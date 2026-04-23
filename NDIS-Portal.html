@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDIS — National Digital Identity System | Government of India</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════
+   ROOT & RESET
+════════════════════════════════════════════ */
+:root {
+  --ink:      #0d1b2e;
+  --navy:     #0f3460;
+  --blue:     #1a5276;
+  --mid:      #2874a6;
+  --sky:      #2e86c1;
+  --accent:   #1565c0;
+  --bright:   #1976d2;
+  --teal:     #0097a7;
+  --gold:     #c8960c;
+  --amber:    #e59400;
+  --white:    #ffffff;
+  --snow:     #f8fafd;
+  --mist:     #eef3f9;
+  --ghost:    #dce8f5;
+  --silver:   #b0c4de;
+  --muted:    #5d7a96;
+  --text:     #1c2b3a;
+  --sub:      #435d74;
+  --success:  #1b7a4a;
+  --warn:     #b45309;
+  --danger:   #b91c1c;
+  --border:   #d0dff0;
+  --shadow-sm: 0 1px 4px rgba(15,52,96,0.08);
+  --shadow-md: 0 4px 16px rgba(15,52,96,0.12);
+  --shadow-lg: 0 8px 32px rgba(15,52,96,0.16);
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--snow);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--mist); }
+::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 3px; }
+
+/* ════════════════════════════════════════════
+   UTILITY
+════════════════════════════════════════════ */
+.hidden { display: none !important; }
+.sr-only { position: absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* ════════════════════════════════════════════
+   TYPOGRAPHY
+════════════════════════════════════════════ */
+h1,h2,h3,h4,h5 {
+  font-family: 'IBM Plex Serif', serif;
+  color: var(--ink);
+  line-height: 1.25;
+  font-weight: 600;
+}
+p { color: var(--sub); }
+
+/* ════════════════════════════════════════════
+   GOV TOP BAR
+════════════════════════════════════════════ */
+.gov-bar {
+  background: var(--ink);
+  color: rgba(255,255,255,0.75);
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  padding: 6px 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.gov-bar a { color: rgba(255,255,255,0.6); text-decoration: none; margin-left: 1.2rem; font-size: 11px; }
+.gov-bar a:hover { color: var(--white); }
+.gov-bar-left { display: flex; align-items: center; gap: 0.8rem; }
+.gov-bar-flag { display: flex; gap: 3px; }
+.gov-bar-flag span { display: block; width: 16px; height: 10px; }
+
+/* ════════════════════════════════════════════
+   HEADER / NAV
+════════════════════════════════════════════ */
+header {
+  background: var(--white);
+  border-bottom: 3px solid var(--navy);
+  position: sticky; top: 0; z-index: 500;
+  box-shadow: var(--shadow-md);
+}
+.header-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.brand {
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer; text-decoration: none;
+}
+.brand-emblem {
+  width: 46px; height: 46px;
+  background: var(--navy);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+.brand-text { line-height: 1.2; }
+.brand-name {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--navy); letter-spacing: -0.01em;
+}
+.brand-sub {
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.main-nav {
+  display: flex; align-items: center; gap: 0.2rem;
+}
+.main-nav a {
+  font-size: 13.5px; font-weight: 500;
+  color: var(--sub); text-decoration: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-sm);
+  transition: color 0.15s, background 0.15s;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+.main-nav a:hover { color: var(--navy); background: var(--mist); }
+.main-nav a.active { color: var(--navy); font-weight: 600; background: var(--ghost); }
+
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 6px; border-radius: var(--r-sm);
+  color: var(--navy); font-size: 22px;
+}
+
+/* ════════════════════════════════════════════
+   BUTTONS
+════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 0.55rem 1.3rem;
+  border-radius: var(--r-sm);
+  font-size: 13.5px; font-weight: 600;
+  cursor: pointer; transition: all 0.18s;
+  border: none; text-decoration: none;
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(15,52,96,0.28);
+}
+.btn-primary:hover {
+  background: var(--blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(15,52,96,0.35);
+}
+.btn-secondary {
+  background: var(--white);
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+.btn-secondary:hover { background: var(--mist); }
+.btn-accent {
+  background: var(--amber);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(200,150,12,0.3);
+}
+.btn-accent:hover { background: var(--gold); transform: translateY(-1px); }
+.btn-teal {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn-teal:hover { background: #00838f; }
+.btn-danger { background: #ef4444; color: var(--white); }
+.btn-sm { padding: 0.38rem 0.9rem; font-size: 12.5px; }
+.btn-lg { padding: 0.75rem 2rem; font-size: 15px; }
+.btn-xl { padding: 0.9rem 2.4rem; font-size: 16px; }
+.btn-full { width: 100%; justify-content: center; }
+.btn-icon { padding: 0.5rem; border-radius: var(--r-sm); }
+
+/* ════════════════════════════════════════════
+   PAGE SYSTEM
+════════════════════════════════════════════ */
+.page { display: none; min-height: calc(100vh - 36px - 68px); animation: pageFade 0.3s ease; }
+.page.active { display: block; }
+@keyframes pageFade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+/* ════════════════════════════════════════════
+   PAGE: HOME
+════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 55%, var(--mid) 100%);
+  position: relative; overflow: hidden;
+  padding: 5rem 2rem 4rem;
+}
+.hero-pattern {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,0.04) 2px, transparent 2px);
+  background-size: 50px 50px;
+}
+.hero-arc {
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 70px; z-index: 1;
+  background: var(--snow);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1260px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font-size: 11.5px; font-weight: 600;
+  padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.hero-badge-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700; margin-bottom: 1.2rem;
+  line-height: 1.18;
+}
+.hero h1 em { font-style: normal; color: #93c5fd; }
+.hero-sub {
+  color: rgba(255,255,255,0.78);
+  font-size: 1.05rem; max-width: 480px;
+  margin-bottom: 2.2rem; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* hero visual */
+.hero-visual {
+  display: flex; justify-content: center; align-items: center;
+}
+.id-mockup {
+  background: linear-gradient(135deg, #1e3a5f, #0d2444);
+  border-radius: var(--r-xl);
+  padding: 2rem;
+  width: 340px; max-width: 100%;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  position: relative; overflow: hidden;
+}
+.id-mockup::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:150px; height:150px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+}
+.id-mockup-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.2rem; }
+.id-mockup-logo { font-size:11px; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
+.id-mockup-chip {
+  width: 36px; height: 28px;
+  background: linear-gradient(135deg, #b8860b, #f5c842);
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.id-mockup-avatar {
+  width: 56px; height: 56px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--teal), #1565c0);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'IBM Plex Serif',serif; font-size:1.4rem; font-weight:700;
+  color:var(--white); margin-bottom:1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.id-mockup-name { color:var(--white); font-size:1.1rem; font-weight:700; margin-bottom:0.2rem; font-family:'IBM Plex Serif',serif; }
+.id-mockup-uid { color:rgba(255,255,255,0.45); font-size:11px; letter-spacing:0.12em; font-weight:600; }
+.id-mockup-divider { height:1px; background:rgba(255,255,255,0.1); margin:1rem 0; }
+.id-mockup-fields { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+.id-field-label { font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:2px; }
+.id-field-value { font-size:12px; color:rgba(255,255,255,0.8); font-weight:500; }
+.id-mockup-verified {
+  display:inline-flex; align-items:center; gap:5px;
+  background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.25);
+  color:#4ade80; font-size:11px; font-weight:600;
+  padding: 4px 10px; border-radius:999px; margin-top:1rem;
+}
+
+/* stats band */
+.stats-band {
+  background: var(--white);
+  padding: 3.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.stats-band-inner {
+  max-width: 1260px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 2.4rem; font-weight: 700; color: var(--navy);
+  line-height: 1;
+}
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 0.4rem; font-weight: 500; }
+.stat-divider { border-right: 1px solid var(--border); }
+
+/* sections */
+.section { padding: 5rem 2rem; }
+.section-inner { max-width: 1260px; margin: 0 auto; }
+.section-tag {
+  display: inline-block;
+  background: var(--ghost); color: var(--navy);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.85rem; border-radius: 999px;
+  margin-bottom: 0.9rem; border: 1px solid var(--border);
+}
+.section h2 { font-size: clamp(1.7rem, 2.5vw, 2.4rem); margin-bottom: 0.7rem; }
+.section-desc { font-size: 1rem; max-width: 520px; color: var(--muted); }
+.section-center { text-align: center; }
+.section-center .section-desc { margin: 0 auto; }
+
+/* services grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem; margin-top: 3rem;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 2rem 1.8rem;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer; position: relative; overflow: hidden;
+}
+.service-card::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--navy), var(--teal));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--ghost); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-icon {
+  width: 52px; height: 52px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.2rem;
+  background: var(--mist); border: 1px solid var(--border);
+}
+.service-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; }
+.service-card p { font-size: 0.875rem; color: var(--muted); }
+.service-card-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12.5px; font-weight: 600; color: var(--navy);
+  margin-top: 1rem; text-decoration: none; letter-spacing: 0.02em;
+}
+.service-card-link:hover { gap: 7px; }
+
+/* features grid */
+.features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem; margin-top: 3rem;
+}
+.feature-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2rem;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+}
+.feature-icon-box {
+  width: 44px; height: 44px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.feature-item h3 { font-size: 0.95rem; font-weight: 600; font-family: 'IBM Plex Sans', sans-serif; margin-bottom: 0.4rem; }
+.feature-item p { font-size: 0.85rem; color: var(--muted); }
+
+/* CTA band */
+.cta-band {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  padding: 4rem 2rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content:''; position:absolute; inset:0;
+  background-image: radial-gradient(circle at 30px 30px, rgba(255,255,255,0.03) 2px, transparent 2px);
+  background-size: 60px 60px;
+}
+.cta-band-inner { position:relative; z-index:1; max-width: 600px; margin: 0 auto; }
+.cta-band h2 { color:var(--white); font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom:0.8rem; }
+.cta-band p { color:rgba(255,255,255,0.72); margin-bottom:2rem; }
+.cta-band-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* ════════════════════════════════════════════
+   PAGE: ABOUT
+════════════════════════════════════════════ */
+.page-banner {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  padding: 3.5rem 2rem;
+  position: relative; overflow: hidden;
+}
+.page-banner::after {
+  content:''; position:absolute; bottom:-1px; left:0; right:0;
+  height:50px; background:var(--snow);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+.page-banner-inner {
+  max-width: 1260px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.page-banner-label {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  margin-bottom: 0.6rem;
+}
+.page-banner h1 { color: var(--white); font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.page-banner p { color: rgba(255,255,255,0.7); margin-top: 0.5rem; max-width: 540px; }
+
+.about-body { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+.about-block {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2.2rem; margin-bottom: 1.4rem;
+}
+.about-block-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sky); margin-bottom: 0.6rem;
+}
+.about-block h2 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+.about-block p { font-size: 0.9rem; color: var(--sub); line-height: 1.8; }
+.about-block p + p { margin-top: 0.7rem; }
+
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem; margin-top: 1rem;
+}
+.pillar {
+  background: var(--mist); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 1.3rem;
+  text-align: center;
+}
+.pillar-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+.pillar h4 { font-size: 0.9rem; color: var(--navy); font-family: 'IBM Plex Sans', sans-serif; margin-bottom: 0.3rem; }
+.pillar p { font-size: 0.8rem; }
+
+.about-timeline { padding-left: 0; margin-top: 2rem; }
+.tl-item { display:flex; gap:1.4rem; margin-bottom:1.6rem; align-items:flex-start; }
+.tl-dot { width:32px; height:32px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:12px; font-weight:700; color:var(--white); }
+.tl-text h4 { font-size:0.95rem; color:var(--navy); font-family:'IBM Plex Sans',sans-serif; font-weight:600; }
+.tl-text p { font-size:0.85rem; color:var(--muted); margin-top:2px; }
+
+/* ════════════════════════════════════════════
+   AUTH PAGES (Login / Signup)
+════════════════════════════════════════════ */
+.auth-layout {
+  min-height: calc(100vh - 104px);
+  display: flex; align-items: stretch;
+}
+.auth-visual {
+  flex: 1; background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  padding: 3rem; display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.auth-visual::before {
+  content:''; position:absolute; inset:0;
+  background-image: radial-gradient(circle at 40px 40px, rgba(255,255,255,0.03) 2px, transparent 2px);
+  background-size: 55px 55px;
+}
+.auth-visual-inner { position:relative; z-index:1; max-width:380px; }
+.auth-visual h2 { color:var(--white); font-size:1.9rem; margin-bottom:1rem; line-height:1.3; }
+.auth-visual p { color:rgba(255,255,255,0.68); font-size:0.9rem; margin-bottom:2rem; }
+.auth-visual-feature { display:flex; align-items:center; gap:10px; margin-bottom:0.9rem; color:rgba(255,255,255,0.8); font-size:0.875rem; }
+.auth-visual-feature-icon { width:32px; height:32px; border-radius:var(--r-sm); background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.auth-form-panel {
+  width: 480px; flex-shrink: 0;
+  background: var(--white);
+  padding: 3rem 2.8rem;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow-y: auto;
+}
+.auth-form-logo { display:flex; align-items:center; gap:10px; margin-bottom:2rem; }
+.auth-form-logo-mark { width:36px; height:36px; background:var(--navy); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.auth-form-logo-name { font-family:'IBM Plex Serif',serif; font-size:15px; font-weight:700; color:var(--navy); }
+.auth-form-title { font-size:1.6rem; color:var(--ink); margin-bottom:0.4rem; }
+.auth-form-sub { font-size:0.875rem; color:var(--muted); margin-bottom:2rem; }
+
+/* form elements */
+.form-group { margin-bottom: 1.2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-label {
+  display: block; font-size: 12.5px; font-weight: 600;
+  color: var(--sub); letter-spacing: 0.03em;
+  margin-bottom: 0.45rem; text-transform: uppercase;
+}
+.form-label span { color: var(--danger); }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 0.65rem 0.95rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm); font-size: 14px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--text); background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px rgba(46,134,193,0.12);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: #9eb3c8; }
+.form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d7a96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 2rem; }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-hint { font-size: 11.5px; color: var(--muted); margin-top: 0.35rem; }
+.form-error { font-size: 11.5px; color: var(--danger); margin-top: 0.35rem; display:none; }
+.form-input.error { border-color: var(--danger); }
+.form-group.has-error .form-error { display: block; }
+
+.checkbox-row { display:flex; align-items:center; gap:8px; margin-bottom:1.2rem; }
+.checkbox-row input[type="checkbox"] { width:15px; height:15px; accent-color:var(--navy); cursor:pointer; }
+.checkbox-row label { font-size:13px; color:var(--sub); cursor:pointer; }
+.checkbox-row a { color:var(--sky); text-decoration:none; font-size:13px; }
+.checkbox-row a:hover { text-decoration:underline; }
+
+.form-divider { display:flex; align-items:center; gap:1rem; margin:1.4rem 0; }
+.form-divider span { color:var(--muted); font-size:12px; white-space:nowrap; }
+.form-divider::before, .form-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.auth-footer-link { text-align:center; font-size:13px; color:var(--muted); margin-top:1.4rem; }
+.auth-footer-link a { color:var(--navy); font-weight:600; cursor:pointer; text-decoration:none; }
+.auth-footer-link a:hover { text-decoration:underline; }
+
+/* password strength */
+.pw-strength { margin-top:0.5rem; }
+.pw-strength-bar { display:flex; gap:4px; margin-bottom:4px; }
+.pw-strength-bar span { flex:1; height:3px; background:var(--border); border-radius:2px; transition:background 0.3s; }
+.pw-strength-bar span.weak { background: #ef4444; }
+.pw-strength-bar span.ok { background: var(--amber); }
+.pw-strength-bar span.strong { background: #22c55e; }
+.pw-strength-label { font-size:11px; color:var(--muted); }
+
+/* ════════════════════════════════════════════
+   REGISTER PAGE
+════════════════════════════════════════════ */
+.register-layout {
+  max-width: 1260px; margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: start;
+}
+.reg-sidebar { position: sticky; top: 80px; }
+.reg-step-list { list-style:none; }
+.reg-step {
+  display:flex; align-items:center; gap:12px;
+  padding:0.8rem 1rem; border-radius:var(--r-md);
+  transition:background 0.2s; cursor:pointer;
+  margin-bottom:4px;
+}
+.reg-step.active { background:var(--ghost); }
+.reg-step-num {
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700;
+  background:var(--mist); color:var(--muted);
+  border:1.5px solid var(--border); flex-shrink:0;
+}
+.reg-step.active .reg-step-num { background:var(--navy); color:var(--white); border-color:var(--navy); }
+.reg-step.done .reg-step-num { background:var(--success); color:var(--white); border-color:var(--success); }
+.reg-step-label { font-size:13.5px; font-weight:500; color:var(--muted); }
+.reg-step.active .reg-step-label { color:var(--navy); font-weight:600; }
+
+.doc-type-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+  gap:1rem; margin-bottom:1.5rem;
+}
+.doc-type-card {
+  border:2px solid var(--border); border-radius:var(--r-md);
+  padding:1.3rem; text-align:center; cursor:pointer;
+  transition:border-color 0.2s, background 0.2s;
+}
+.doc-type-card:hover { border-color:var(--sky); background:var(--mist); }
+.doc-type-card.selected { border-color:var(--navy); background:var(--ghost); }
+.doc-type-card .icon { font-size:2rem; margin-bottom:0.5rem; }
+.doc-type-card h4 { font-size:0.875rem; font-family:'IBM Plex Sans',sans-serif; font-weight:600; color:var(--ink); }
+
+.form-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:2.2rem;
+}
+.form-card-title { font-size:1.3rem; color:var(--ink); margin-bottom:0.4rem; }
+.form-card-sub { font-size:0.875rem; color:var(--muted); margin-bottom:1.8rem; }
+
+.upload-zone {
+  border:2px dashed var(--border); border-radius:var(--r-md);
+  padding:2rem; text-align:center; cursor:pointer;
+  transition:border-color 0.2s, background 0.2s;
+  background:var(--snow);
+}
+.upload-zone:hover { border-color:var(--sky); background:var(--mist); }
+.upload-zone-icon { font-size:2.2rem; margin-bottom:0.6rem; }
+.upload-zone p { font-size:13px; color:var(--muted); }
+.upload-zone strong { color:var(--navy); }
+
+/* ════════════════════════════════════════════
+   DASHBOARD
+════════════════════════════════════════════ */
+.dash-layout {
+  display:grid; grid-template-columns:240px 1fr;
+  min-height:calc(100vh - 104px);
+}
+.dash-sidebar {
+  background:var(--white);
+  border-right:1px solid var(--border);
+  padding:0;
+  position:sticky; top:68px;
+  height:calc(100vh - 68px);
+  overflow-y:auto;
+  display:flex; flex-direction:column;
+}
+.dash-user {
+  padding:1.5rem;
+  border-bottom:1px solid var(--border);
+  background:var(--mist);
+}
+.dash-user-avatar {
+  width:48px; height:48px; border-radius:var(--r-md);
+  background:linear-gradient(135deg, var(--navy), var(--teal));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'IBM Plex Serif',serif; font-weight:700;
+  color:var(--white); font-size:1.2rem; margin-bottom:0.8rem;
+}
+.dash-user-name { font-weight:700; font-size:0.95rem; color:var(--ink); }
+.dash-user-uid { font-size:11px; color:var(--muted); margin-top:2px; }
+.dash-user-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px; color:var(--success); font-weight:600;
+  margin-top:5px;
+}
+
+.dash-nav { padding:1rem 0; flex:1; }
+.dash-nav-section { padding:0.5rem 1.2rem 0.3rem; font-size:10px; font-weight:700; color:var(--silver); letter-spacing:0.12em; text-transform:uppercase; }
+.dash-nav a {
+  display:flex; align-items:center; gap:10px;
+  padding:0.6rem 1.2rem; color:var(--muted);
+  text-decoration:none; font-size:13.5px; font-weight:500;
+  border-left:3px solid transparent;
+  transition:color 0.15s, background 0.15s, border-color 0.15s;
+  cursor:pointer;
+}
+.dash-nav a:hover { color:var(--navy); background:var(--mist); }
+.dash-nav a.active { color:var(--navy); font-weight:600; background:var(--ghost); border-left-color:var(--navy); }
+.dash-nav a .nav-icon { font-size:1rem; }
+
+.dash-main { padding:2rem; background:var(--snow); overflow-y:auto; }
+.dash-topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.8rem; flex-wrap:wrap; gap:1rem; }
+.dash-topbar h2 { font-size:1.5rem; color:var(--ink); }
+.dash-topbar-sub { font-size:13px; color:var(--muted); margin-top:2px; }
+
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:1rem; margin-bottom:2rem; }
+.kpi-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:1.3rem 1.5rem;
+  position:relative; overflow:hidden;
+}
+.kpi-card::before { content:''; position:absolute; top:0; left:0; bottom:0; width:4px; border-radius:var(--r-sm) 0 0 var(--r-sm); }
+.kpi-blue::before { background:var(--navy); }
+.kpi-green::before { background:var(--success); }
+.kpi-amber::before { background:var(--amber); }
+.kpi-red::before { background:var(--danger); }
+.kpi-label { font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.4rem; }
+.kpi-value { font-family:'IBM Plex Serif',serif; font-size:2rem; font-weight:700; color:var(--ink); line-height:1; }
+.kpi-sub { font-size:11.5px; color:var(--muted); margin-top:0.3rem; }
+
+.section-title { font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:1.2rem; display:flex; align-items:center; justify-content:space-between; }
+.section-title span { font-size:12px; color:var(--sky); font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif; }
+
+/* document cards */
+.doc-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:1rem; margin-bottom:2rem; }
+.doc-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:1.3rem;
+  transition:transform 0.18s, box-shadow 0.18s; cursor:pointer;
+  position:relative; overflow:hidden;
+}
+.doc-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.doc-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.8rem; }
+.doc-icon { font-size:1.8rem; }
+.status-pill { font-size:10.5px; font-weight:700; padding:2px 9px; border-radius:999px; letter-spacing:0.04em; text-transform:uppercase; }
+.status-active { background:rgba(27,122,74,0.1); color:var(--success); border:1px solid rgba(27,122,74,0.2); }
+.status-pending { background:rgba(180,83,9,0.1); color:var(--warn); border:1px solid rgba(180,83,9,0.2); }
+.status-rejected { background:rgba(185,28,28,0.1); color:var(--danger); border:1px solid rgba(185,28,28,0.2); }
+.doc-card h4 { font-size:0.9rem; font-weight:700; font-family:'IBM Plex Sans',sans-serif; color:var(--ink); margin-bottom:3px; }
+.doc-card-id { font-size:11px; color:var(--muted); margin-bottom:0.8rem; font-weight:500; }
+.doc-card-actions { display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+/* activity */
+.activity-list { background:var(--white); border:1px solid var(--border); border-radius:var(--r-md); overflow:hidden; margin-bottom:2rem; }
+.activity-item {
+  display:flex; align-items:center; gap:12px;
+  padding:0.9rem 1.2rem; border-bottom:1px solid var(--border);
+}
+.activity-item:last-child { border-bottom:none; }
+.activity-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.activity-body { flex:1; }
+.activity-title { font-size:13.5px; font-weight:500; color:var(--text); }
+.activity-title b { color:var(--navy); }
+.activity-time { font-size:11px; color:var(--muted); }
+.activity-badge { font-size:11px; font-weight:600; padding:2px 8px; border-radius:999px; }
+
+/* notification panel */
+.notif-panel { background:var(--white); border:1px solid var(--border); border-radius:var(--r-md); overflow:hidden; }
+.notif-item { display:flex; gap:10px; padding:0.9rem 1.2rem; border-bottom:1px solid var(--border); }
+.notif-item:last-child { border-bottom:none; }
+.notif-icon { width:34px; height:34px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.notif-text { font-size:13px; color:var(--sub); }
+.notif-text b { color:var(--ink); display:block; font-size:13.5px; }
+.notif-time { font-size:11px; color:var(--muted); margin-top:2px; }
+
+/* quick actions */
+.quick-actions { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:1rem; margin-bottom:2rem; }
+.qa-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:1.2rem;
+  text-align:center; cursor:pointer;
+  transition:transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+.qa-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:var(--sky); }
+.qa-icon { font-size:1.8rem; margin-bottom:0.5rem; }
+.qa-label { font-size:12.5px; font-weight:600; color:var(--navy); }
+
+/* progress bar */
+.progress-bar { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:0.5rem; }
+.progress-fill { height:100%; border-radius:3px; background:linear-gradient(90deg, var(--navy), var(--teal)); transition:width 0.5s; }
+
+/* profile card */
+.profile-card { background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg); padding:2rem; }
+.profile-avatar-row { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; }
+.profile-avatar-big { width:72px; height:72px; border-radius:var(--r-md); background:linear-gradient(135deg, var(--navy), var(--teal)); display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:700; color:var(--white); font-family:'IBM Plex Serif',serif; }
+.profile-name { font-size:1.2rem; color:var(--ink); font-weight:700; font-family:'IBM Plex Serif',serif; }
+.profile-uid { font-size:12px; color:var(--muted); margin-top:3px; }
+
+/* security score */
+.security-widget { background:var(--white); border:1px solid var(--border); border-radius:var(--r-md); padding:1.4rem; }
+.security-score-ring { display:inline-flex; align-items:center; justify-content:center; width:64px; height:64px; border-radius:50%; background:conic-gradient(var(--navy) 0% 78%, var(--border) 78% 100%); }
+.security-score-inner { width:50px; height:50px; border-radius:50%; background:var(--white); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Serif',serif; font-size:1.1rem; font-weight:700; color:var(--navy); }
+
+/* ════════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════════ */
+.contact-layout { max-width:1100px; margin:0 auto; padding:4rem 2rem; display:grid; grid-template-columns:1fr 1.5fr; gap:3rem; align-items:start; }
+.contact-info h2 { font-size:1.8rem; margin-bottom:0.8rem; }
+.contact-info > p { font-size:0.9rem; margin-bottom:2rem; }
+.contact-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:1.3rem; }
+.contact-item-icon { width:40px; height:40px; border-radius:var(--r-md); background:var(--mist); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.contact-item-body h4 { font-size:0.9rem; font-family:'IBM Plex Sans',sans-serif; color:var(--ink); margin-bottom:2px; }
+.contact-item-body p { font-size:0.85rem; color:var(--muted); }
+.contact-form-card { background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg); padding:2.2rem; }
+.contact-form-card h3 { font-size:1.3rem; margin-bottom:0.5rem; }
+.contact-form-card > p { font-size:0.875rem; color:var(--muted); margin-bottom:1.8rem; }
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 3.5rem 2rem 0;
+}
+.footer-inner {
+  max-width: 1260px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand p { color:rgba(255,255,255,0.5); font-size:0.85rem; margin-top:0.8rem; max-width:280px; line-height:1.7; }
+.footer-col h4 { font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:700; color:rgba(255,255,255,0.9); margin-bottom:1rem; letter-spacing:0.04em; }
+.footer-col a { display:block; color:rgba(255,255,255,0.45); font-size:0.85rem; text-decoration:none; margin-bottom:0.5rem; cursor:pointer; transition:color 0.15s; }
+.footer-col a:hover { color:rgba(255,255,255,0.85); }
+.footer-bottom { max-width:1260px; margin:0 auto; padding:1.4rem 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
+.footer-bottom p { color:rgba(255,255,255,0.35); font-size:12px; }
+.footer-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.45); font-size:11px; padding:4px 10px; border-radius:999px; }
+
+/* ════════════════════════════════════════════
+   MODAL
+════════════════════════════════════════════ */
+.modal-overlay {
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(10,25,45,0.6); backdrop-filter:blur(5px);
+  display:none; align-items:center; justify-content:center; padding:1rem;
+}
+.modal-overlay.open { display:flex; }
+.modal-box { background:var(--white); border-radius:var(--r-xl); padding:2.2rem; max-width:520px; width:100%; position:relative; box-shadow:var(--shadow-lg); animation:pageFade 0.2s ease; }
+.modal-close { position:absolute; top:1.2rem; right:1.2rem; background:var(--mist); border:none; border-radius:var(--r-sm); width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--sub); transition:background 0.15s; }
+.modal-close:hover { background:var(--ghost); }
+.modal-icon { font-size:2.8rem; text-align:center; margin-bottom:1rem; }
+.modal-title { font-size:1.4rem; text-align:center; margin-bottom:0.4rem; }
+.modal-sub { font-size:0.875rem; text-align:center; color:var(--muted); margin-bottom:1.8rem; }
+.modal-field { display:flex; justify-content:space-between; align-items:center; padding:0.65rem 0; border-bottom:1px solid var(--border); font-size:13.5px; }
+.modal-field:last-of-type { border-bottom:none; }
+.modal-field-label { color:var(--muted); font-weight:500; }
+.modal-field-value { font-weight:600; color:var(--ink); text-align:right; }
+
+/* ════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════ */
+.toast-container { position:fixed; bottom:1.8rem; right:1.8rem; z-index:2000; display:flex; flex-direction:column; gap:0.6rem; }
+.toast {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:0.9rem 1.2rem;
+  min-width:280px; max-width:360px;
+  box-shadow:var(--shadow-lg);
+  display:flex; align-items:flex-start; gap:10px;
+  animation:slideInToast 0.3s ease;
+  border-left:4px solid var(--navy);
+}
+.toast.toast-success { border-left-color: var(--success); }
+.toast.toast-error { border-left-color: var(--danger); }
+.toast.toast-warning { border-left-color: var(--amber); }
+@keyframes slideInToast { from{transform:translateX(100%);opacity:0} to{transform:none;opacity:1} }
+.toast-icon { font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+.toast-content { flex:1; }
+.toast-title { font-size:13.5px; font-weight:700; color:var(--ink); }
+.toast-msg { font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns:1fr; text-align:center; }
+  .hero-visual { display:none; }
+  .hero-sub { max-width:100%; margin-left:auto; margin-right:auto; }
+  .hero-actions { justify-content:center; }
+  .stats-band-inner { grid-template-columns: repeat(2,1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .auth-visual { display:none; }
+  .auth-form-panel { width:100%; max-width:520px; margin:0 auto; }
+  .auth-layout { justify-content:center; }
+  .register-layout { grid-template-columns:1fr; }
+  .reg-sidebar { display:none; }
+  .dash-layout { grid-template-columns:1fr; }
+  .dash-sidebar { display:none; }
+  .contact-layout { grid-template-columns:1fr; }
+}
+@media (max-width: 600px) {
+  .stats-band-inner { grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .footer-inner { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .gov-bar { justify-content:center; }
+  .hero { padding:4rem 1.2rem 3rem; }
+  .header-inner { padding:0 1rem; }
+  .main-nav { display:none; }
+  .hamburger { display:flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ GOV TOP BAR ══ -->
+<div class="gov-bar">
+  <div class="gov-bar-left">
+    <span>🇮🇳 Government of India</span>
+    <span>|</span>
+    <span>Ministry of Electronics &amp; Information Technology</span>
+  </div>
+  <div>
+    <a href="#">Skip to Content</a>
+    <a href="#">Accessibility</a>
+    <a href="#">हिंदी</a>
+    <a href="#">Site Map</a>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <a class="brand" onclick="showPage('home')">
+      <div class="brand-emblem">🪪</div>
+      <div class="brand-text">
+        <div class="brand-name">NDIS — National Digital Identity System</div>
+        <div class="brand-sub">Government of India · Secure Digital Platform</div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a id="nav-home" class="active" onclick="showPage('home')">Home</a>
+      <a id="nav-about" onclick="showPage('about')">About</a>
+      <a id="nav-register" onclick="requireAuth('register')">Register</a>
+      <a id="nav-contact" onclick="showPage('contact')">Contact</a>
+    </nav>
+    <div class="header-actions" id="header-auth">
+      <button class="btn btn-secondary btn-sm" onclick="showPage('login')">Login</button>
+      <button class="btn btn-primary btn-sm" onclick="showPage('signup')">Sign Up</button>
+    </div>
+    <div class="header-actions hidden" id="header-user">
+      <button class="btn btn-secondary btn-sm" onclick="showPage('dashboard')">My Dashboard</button>
+      <button class="btn btn-primary btn-sm" style="background:#dc2626" onclick="doLogout()">Logout</button>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="hidden" style="border-top:1px solid var(--border);background:var(--white);padding:1rem 2rem;display:flex;flex-direction:column;gap:0.5rem;">
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('home');toggleMobileMenu()">Home</a>
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('about');toggleMobileMenu()">About</a>
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="requireAuth('register');toggleMobileMenu()">Register</a>
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('contact');toggleMobileMenu()">Contact Us</a>
+    <div style="display:flex;gap:0.6rem;margin-top:0.5rem">
+      <button class="btn btn-secondary btn-sm" onclick="showPage('login');toggleMobileMenu()">Login</button>
+      <button class="btn btn-primary btn-sm" onclick="showPage('signup');toggleMobileMenu()">Sign Up</button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span class="hero-badge-dot"></span> Live & Operational — India's Unified ID Platform</div>
+        <h1>Your <em>Government Identity</em>,<br>Secured Digitally</h1>
+        <p class="hero-sub">The National Digital Identity System is a centralised, government-verified platform to store, manage, verify, and apply for all your official identity documents — anytime, anywhere.</p>
+        <div class="hero-actions">
+          <button class="btn btn-accent btn-xl" onclick="showPage('signup')">🚀 Get Started Free</button>
+          <button class="btn btn-secondary btn-xl" style="color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1)" onclick="showPage('login')">🔐 Citizen Login</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="id-mockup">
+          <div class="id-mockup-header">
+            <div>
+              <div class="id-mockup-logo">🇮🇳 NDIS</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px">Digital Identity Card</div>
+            </div>
+            <div class="id-mockup-chip"></div>
+          </div>
+          <div class="id-mockup-avatar">SB</div>
+          <div class="id-mockup-name">Suprit Biswas</div>
+          <div class="id-mockup-uid">NDIS-2025-784321</div>
+          <div class="id-mockup-divider"></div>
+          <div class="id-mockup-fields">
+            <div><div class="id-field-label">Date of Birth</div><div class="id-field-value">15 Aug 1992</div></div>
+            <div><div class="id-field-label">Gender</div><div class="id-field-value">Male</div></div>
+            <div><div class="id-field-label">State</div><div class="id-field-value">West Bengal</div></div>
+            <div><div class="id-field-label">Status</div><div class="id-field-value" style="color:#4ade80">✓ Verified</div></div>
+          </div>
+          <div class="id-mockup-verified">✅ KYC Verified · 4 Documents Linked</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-band">
+    <div class="stats-band-inner">
+      <div class="stat-item stat-divider">
+        <div class="stat-num" id="stat1">0</div>
+        <div class="stat-label">Registered Citizens</div>
+      </div>
+      <div class="stat-item stat-divider">
+        <div class="stat-num" id="stat2">0</div>
+        <div class="stat-label">Documents Stored</div>
+      </div>
+      <div class="stat-item stat-divider">
+        <div class="stat-num" id="stat3">0</div>
+        <div class="stat-label">Certificates Issued Today</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="stat4">0</div>
+        <div class="stat-label">States & UTs Covered</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="section" style="background:var(--white);border-top:1px solid var(--border);">
+    <div class="section-inner section-center">
+      <div class="section-tag">Supported Documents</div>
+      <h2>All Your Government IDs, <br>One Secure Vault</h2>
+      <p class="section-desc">Digitally store and access all government-issued identity documents. No more physical queues.</p>
+    </div>
+    <div class="section-inner">
+      <div class="services-grid">
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">🪪</div>
+          <h3>Aadhaar Card</h3>
+          <p>12-digit biometric identity issued by UIDAI — India's primary national identity document.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">🗳️</div>
+          <h3>Voter ID Card</h3>
+          <p>Electoral Photo Identity Card (EPIC) issued by the Election Commission of India.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">💳</div>
+          <h3>PAN Card</h3>
+          <p>Permanent Account Number for financial identity, issued by the Income Tax Department.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">📜</div>
+          <h3>Birth Certificate</h3>
+          <p>Official record of birth issued by municipal bodies. Essential for all subsequent registrations.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">🚗</div>
+          <h3>Driving Licence</h3>
+          <p>Motor vehicle driving licence issued by the Regional Transport Office of your state.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+        <div class="service-card" onclick="requireAuth('register')">
+          <div class="service-icon">🛂</div>
+          <h3>Passport</h3>
+          <p>Indian Passport issued by the Ministry of External Affairs for international travel.</p>
+          <div class="service-card-link">Apply / Link →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" style="background:var(--snow);">
+    <div class="section-inner section-center">
+      <div class="section-tag">Why NDIS?</div>
+      <h2>Engineered for <br>Security &amp; Trust</h2>
+      <p class="section-desc">Every feature built with citizen security and data sovereignty as the foundation.</p>
+    </div>
+    <div class="section-inner">
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(15,52,96,0.08);border:1px solid rgba(15,52,96,0.12)">🔐</div>
+          <div>
+            <h3>AES-256 Encryption</h3>
+            <p>All documents encrypted at rest with AES-256-GCM. Data in transit secured by TLS 1.3.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(0,151,167,0.08);border:1px solid rgba(0,151,167,0.12)">✅</div>
+          <div>
+            <h3>DigiLocker Integration</h3>
+            <p>Directly pull verified documents from DigiLocker — no re-uploading required.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(27,122,74,0.08);border:1px solid rgba(27,122,74,0.12)">📱</div>
+          <div>
+            <h3>Mobile QR Verification</h3>
+            <p>Generate time-limited QR codes to share verified ID proofs without exposing originals.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(180,83,9,0.08);border:1px solid rgba(180,83,9,0.12)">🏛️</div>
+          <div>
+            <h3>Online Applications</h3>
+            <p>Apply for new documents, track status in real time, receive SMS and email alerts.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(185,28,28,0.08);border:1px solid rgba(185,28,28,0.12)">🛡️</div>
+          <div>
+            <h3>Role-Based Access</h3>
+            <p>Separate admin and citizen roles. Granular permission system with full audit logs.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box" style="background:rgba(21,101,192,0.08);border:1px solid rgba(21,101,192,0.12)">📩</div>
+          <div>
+            <h3>Smart Expiry Alerts</h3>
+            <p>Automated reminders before your Passport, Driving Licence, or PAN requires renewal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <h2>Ready to Go Fully Digital?</h2>
+      <p>Join over 140 million citizens who have secured their government identities on NDIS. Free for all Indian citizens.</p>
+      <div class="cta-band-actions">
+        <button class="btn btn-accent btn-lg" onclick="showPage('signup')">Create Free Account</button>
+        <button class="btn btn-secondary btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)" onclick="showPage('about')">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.8rem">
+          <div style="width:38px;height:38px;background:rgba(255,255,255,0.1);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem">🪪</div>
+          <div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9)">NDIS</div>
+        </div>
+        <p>National Digital Identity System — a Ministry of Electronics and Information Technology initiative under the Digital India programme.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About NDIS</a><a onclick="showPage('signup')">Register</a><a onclick="showPage('contact')">Contact Us</a></div>
+      <div class="footer-col"><h4>Documents</h4><a>Aadhaar Card</a><a>PAN Card</a><a>Voter ID</a><a>Birth Certificate</a><a>Driving Licence</a><a>Passport</a></div>
+      <div class="footer-col"><h4>Legal & Help</h4><a>Privacy Policy</a><a>Terms of Use</a><a>RTI Act</a><a>Help Centre</a><a>Grievance Portal</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 National Digital Identity System · Government of India. All rights reserved.</p>
+      <div style="display:flex;gap:0.7rem;flex-wrap:wrap">
+        <div class="footer-badge">🔒 HTTPS Secured</div>
+        <div class="footer-badge">✅ MeitY Compliant</div>
+        <div class="footer-badge">🛡️ ISO 27001</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: ABOUT
+════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="page-banner">
+    <div class="page-banner-inner">
+      <div class="page-banner-label">Government of India Initiative</div>
+      <h1>About the National Digital Identity System</h1>
+      <p>India's centralised, citizen-first platform for secure, unified digital identity management.</p>
+    </div>
+  </div>
+  <div class="about-body">
+    <div class="about-block">
+      <div class="about-block-label">Overview</div>
+      <h2>What is NDIS?</h2>
+      <p>The National Digital Identity System (NDIS) is a flagship initiative of the Ministry of Electronics and Information Technology (MeitY), launched under the Digital India programme. It provides every Indian citizen with a secure, unified digital identity vault — a single platform to store, manage, verify, and apply for all government-issued identity documents.</p>
+      <p>By eliminating the need to carry physical documents and visit government offices, NDIS empowers citizens with instant access to their official identities — from Aadhaar and PAN to Passport and Driving Licence — with the highest standards of data security and privacy.</p>
+    </div>
+    <div class="about-block">
+      <div class="about-block-label">Mission & Vision</div>
+      <h2>Our Purpose</h2>
+      <div class="pillars-grid">
+        <div class="pillar"><div class="pillar-icon">🎯</div><h4>Mission</h4><p>Digitise, secure, and simplify access to government-issued identity for every Indian citizen.</p></div>
+        <div class="pillar"><div class="pillar-icon">🌐</div><h4>Vision</h4><p>A paperless India where every citizen's identity is verified, accessible, and sovereign.</p></div>
+        <div class="pillar"><div class="pillar-icon">🤝</div><h4>Commitment</h4><p>Zero fraud, zero data leak — citizen data sovereignty above all else.</p></div>
+        <div class="pillar"><div class="pillar-icon">⚡</div><h4>Goal</h4><p>Reduce document turnaround time from weeks to minutes through digitisation.</p></div>
+      </div>
+    </div>
+    <div class="about-block">
+      <div class="about-block-label">Security & Compliance</div>
+      <h2>How We Protect Your Data</h2>
+      <p>NDIS operates under the Digital Personal Data Protection Act 2023, Aadhaar Act 2016, and the IT Act 2000. All systems are certified under ISO/IEC 27001:2022 and audited quarterly by CERT-In empanelled agencies.</p>
+      <p>Documents are encrypted with AES-256-GCM at rest and TLS 1.3 in transit. Our zero-knowledge architecture ensures that only you hold the keys to your data — government administrators cannot view your unencrypted files. All access events are immutably logged for full auditability.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem">
+        <div class="status-pill status-active">✓ ISO 27001 Certified</div>
+        <div class="status-pill status-active">✓ DPDP Act 2023 Compliant</div>
+        <div class="status-pill status-active">✓ CERT-In Audited</div>
+        <div class="status-pill status-active">✓ MeitY Approved</div>
+        <div class="status-pill status-active">✓ UIDAI Integrated</div>
+      </div>
+    </div>
+    <div class="about-block">
+      <div class="about-block-label">Milestones</div>
+      <h2>Platform Journey</h2>
+      <div class="about-timeline">
+        <div class="tl-item"><div class="tl-dot">21</div><div class="tl-text"><h4>Project Inception — 2021</h4><p>MeitY approves NDIS as a Digital India 2.0 strategic initiative with ₹1,200 crore allocation.</p></div></div>
+        <div class="tl-item"><div class="tl-dot">22</div><div class="tl-text"><h4>Pilot Launch — 2022</h4><p>Rollout in 5 states (Karnataka, Maharashtra, Tamil Nadu, Gujarat, Telangana) — 2 million citizens enrolled.</p></div></div>
+        <div class="tl-item"><div class="tl-dot">23</div><div class="tl-text"><h4>API Integrations — 2023</h4><p>UIDAI, Income Tax, and Election Commission APIs integrated. DigiLocker sync enabled nationally.</p></div></div>
+        <div class="tl-item"><div class="tl-dot">24</div><div class="tl-text"><h4>National Rollout — 2024</h4><p>Platform expanded to all 28 states and 8 UTs. Mobile app launched with biometric authentication.</p></div></div>
+        <div class="tl-item"><div class="tl-dot">25</div><div class="tl-text"><h4>140M Citizens — 2025</h4><p>Reached 140 million registered users. Cross-border SAARC verification protocol initiated.</p></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;padding-bottom:2rem">
+      <button class="btn btn-primary btn-lg" onclick="showPage('signup')">Join NDIS Today</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div><div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:0.6rem">🪪 NDIS</div><p>National Digital Identity System — a Ministry of Electronics and Information Technology initiative.</p></div>
+      <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Use</a><a>RTI Act</a></div>
+      <div class="footer-col"><h4>Ministry</h4><a>MeitY</a><a>Digital India</a><a>data.gov.in</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 National Digital Identity System · Government of India</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: LOGIN
+════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-layout">
+    <div class="auth-visual">
+      <div class="auth-visual-inner">
+        <h2>Welcome back to your Identity Vault</h2>
+        <p>Sign in securely to access all your government-issued documents in one place.</p>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🔐</div><span>Two-factor authentication available</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📱</div><span>Login with Aadhaar OTP</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🛡️</div><span>Session encrypted end-to-end</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📋</div><span>Full activity audit log</span></div>
+      </div>
+    </div>
+    <div class="auth-form-panel">
+      <div class="auth-form-logo">
+        <div class="auth-form-logo-mark">🪪</div>
+        <div class="auth-form-logo-name">NDIS Portal</div>
+      </div>
+      <h2 class="auth-form-title">Citizen Login</h2>
+      <p class="auth-form-sub">Enter your registered credentials to access your account.</p>
+
+      <div id="login-error" class="hidden" style="background:rgba(185,28,28,0.07);border:1px solid rgba(185,28,28,0.2);color:var(--danger);padding:0.8rem 1rem;border-radius:var(--r-sm);font-size:13px;margin-bottom:1.2rem"></div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address or Mobile Number <span>*</span></label>
+        <input class="form-input" id="login-id" type="text" placeholder="email@example.com or 98765XXXXX" autocomplete="username">
+        <div class="form-error">Please enter your email or mobile number</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password <span>*</span></label>
+        <input class="form-input" id="login-pw" type="password" placeholder="••••••••" autocomplete="current-password">
+        <div class="form-error">Please enter your password</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <label class="checkbox-row" style="margin-bottom:0"><input type="checkbox"> <label style="font-size:13px;color:var(--sub)">Remember me</label></label>
+        <a style="font-size:13px;color:var(--sky);font-weight:600;cursor:pointer">Forgot Password?</a>
+      </div>
+      <button class="btn btn-primary btn-full btn-lg" onclick="doLogin()">🔐 Login Securely</button>
+      <div class="form-divider"><span>or</span></div>
+      <button class="btn btn-secondary btn-full" onclick="doLogin()" style="justify-content:center">🪪 Login with Aadhaar OTP</button>
+      <div class="auth-footer-link">Don't have an account? <a onclick="showPage('signup')">Create Account →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: SIGNUP
+════════════════════════════════════════════ -->
+<div id="page-signup" class="page">
+  <div class="auth-layout">
+    <div class="auth-visual">
+      <div class="auth-visual-inner">
+        <h2>Create Your Digital Identity Account</h2>
+        <p>Register once, access all your government identity documents forever — securely and freely.</p>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🆓</div><span>Free for all Indian citizens</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">⚡</div><span>Instant document access after KYC</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🔒</div><span>Zero-knowledge data architecture</span></div>
+        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📧</div><span>SMS + Email verification</span></div>
+      </div>
+    </div>
+    <div class="auth-form-panel">
+      <div class="auth-form-logo">
+        <div class="auth-form-logo-mark">🪪</div>
+        <div class="auth-form-logo-name">NDIS Portal</div>
+      </div>
+      <h2 class="auth-form-title">Create Account</h2>
+      <p class="auth-form-sub">Fill in your details to register as a citizen.</p>
+
+      <div class="form-group">
+        <label class="form-label">Full Name (as per Aadhaar) <span>*</span></label>
+        <input class="form-input" id="su-name" type="text" placeholder="Enter your full legal name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email Address <span>*</span></label>
+          <input class="form-input" id="su-email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile Number <span>*</span></label>
+          <input class="form-input" id="su-mobile" type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date of Birth <span>*</span></label>
+          <input class="form-input" id="su-dob" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gender <span>*</span></label>
+          <select class="form-select form-input" id="su-gender">
+            <option value="">— Select —</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Address <span>*</span></label>
+        <input class="form-input" id="su-addr" type="text" placeholder="House No., Street, City, PIN Code">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Password <span>*</span></label>
+          <input class="form-input" id="su-pw" type="password" placeholder="Min. 8 characters" oninput="checkPwStrength(this.value)">
+          <div class="pw-strength">
+            <div class="pw-strength-bar"><span id="pw-s1"></span><span id="pw-s2"></span><span id="pw-s3"></span><span id="pw-s4"></span></div>
+            <div class="pw-strength-label" id="pw-label">Enter a password</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password <span>*</span></label>
+          <input class="form-input" id="su-pw2" type="password" placeholder="Re-enter password">
+        </div>
+      </div>
+      <div class="checkbox-row" style="margin-bottom:1.5rem">
+        <input type="checkbox" id="su-terms">
+        <label for="su-terms">I agree to the <a onclick="">Terms of Use</a>, <a onclick="">Privacy Policy</a>, and authorise NDIS to verify my identity through UIDAI.</label>
+      </div>
+      <button class="btn btn-primary btn-full btn-lg" onclick="doSignup()">Create My Account →</button>
+      <div class="auth-footer-link">Already registered? <a onclick="showPage('login')">Login →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: REGISTER (Document)
+════════════════════════════════════════════ -->
+<div id="page-register" class="page">
+  <div class="page-banner">
+    <div class="page-banner-inner">
+      <div class="page-banner-label">Document Services</div>
+      <h1>Apply for or Register a Document</h1>
+      <p>Submit an application for a new government-issued identity document or link an existing one to your NDIS account.</p>
+    </div>
+  </div>
+  <div class="register-layout">
+    <!-- sidebar steps -->
+    <aside class="reg-sidebar">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1rem">
+        <h3 style="font-size:1rem;margin-bottom:1rem">Application Steps</h3>
+        <ul class="reg-step-list">
+          <li class="reg-step active" id="rstep-1"><div class="reg-step-num">1</div><div class="reg-step-label">Select Document</div></li>
+          <li class="reg-step" id="rstep-2"><div class="reg-step-num">2</div><div class="reg-step-label">Personal Details</div></li>
+          <li class="reg-step" id="rstep-3"><div class="reg-step-num">3</div><div class="reg-step-label">Upload Proofs</div></li>
+          <li class="reg-step" id="rstep-4"><div class="reg-step-num">4</div><div class="reg-step-label">Review & Submit</div></li>
+        </ul>
+      </div>
+      <div style="background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.2rem;font-size:13px">
+        <div style="font-weight:700;color:var(--navy);margin-bottom:0.5rem">📌 Important Notes</div>
+        <ul style="color:var(--muted);padding-left:1rem;line-height:1.9">
+          <li>All fields marked * are mandatory</li>
+          <li>Documents must be clear, legible scans</li>
+          <li>Accepted formats: PDF, JPG, PNG (max 5MB)</li>
+          <li>Processing time: 3–7 working days</li>
+        </ul>
+      </div>
+    </aside>
+    <!-- main form -->
+    <div>
+      <!-- Step 1: Select doc -->
+      <div id="reg-step-1" class="form-card">
+        <h3 class="form-card-title">Select Document Type</h3>
+        <p class="form-card-sub">Choose the document you wish to apply for or register on your NDIS account.</p>
+        <div class="doc-type-grid">
+          <div class="doc-type-card" onclick="selectDocType(this,'Aadhaar Card')"><div class="icon">🪪</div><h4>Aadhaar Card</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Voter ID')"><div class="icon">🗳️</div><h4>Voter ID Card</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'PAN Card')"><div class="icon">💳</div><h4>PAN Card</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Birth Certificate')"><div class="icon">📜</div><h4>Birth Certificate</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Driving Licence')"><div class="icon">🚗</div><h4>Driving Licence</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Passport')"><div class="icon">🛂</div><h4>Passport</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Ration Card')"><div class="icon">🏘️</div><h4>Ration Card</h4></div>
+          <div class="doc-type-card" onclick="selectDocType(this,'Caste Certificate')"><div class="icon">📋</div><h4>Caste Certificate</h4></div>
+        </div>
+        <button class="btn btn-primary" onclick="nextRegStep(2)" id="reg-next-1" disabled>Continue to Personal Details →</button>
+      </div>
+
+      <!-- Step 2: Personal details -->
+      <div id="reg-step-2" class="form-card hidden">
+        <h3 class="form-card-title">Personal Details</h3>
+        <p class="form-card-sub">Enter your details exactly as they appear on your existing identity proof.</p>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input class="form-input" type="text" placeholder="As per Aadhaar Card"></div>
+          <div class="form-group"><label class="form-label">Date of Birth <span>*</span></label><input class="form-input" type="date"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Father's / Spouse's Name <span>*</span></label><input class="form-input" type="text" placeholder="Full name"></div>
+          <div class="form-group"><label class="form-label">Gender <span>*</span></label><select class="form-select form-input"><option value="">— Select —</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label">Residential Address <span>*</span></label><textarea class="form-textarea" placeholder="Full address with PIN code"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">State <span>*</span></label><select class="form-select form-input"><option value="">— Select State —</option><option>West Bengal</option><option>Maharashtra</option><option>Karnataka</option><option>Tamil Nadu</option><option>Uttar Pradesh</option><option>Gujarat</option><option>Rajasthan</option><option>Delhi</option><option>Bihar</option><option>Odisha</option></select></div>
+          <div class="form-group"><label class="form-label">PIN Code <span>*</span></label><input class="form-input" type="text" placeholder="6-digit PIN"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Mobile Number <span>*</span></label><input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX"><div class="form-hint">OTP will be sent to this number for verification.</div></div>
+        <div style="display:flex;gap:1rem;margin-top:0.5rem">
+          <button class="btn btn-secondary" onclick="nextRegStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="nextRegStep(3)">Continue to Upload →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Upload -->
+      <div id="reg-step-3" class="form-card hidden">
+        <h3 class="form-card-title">Upload Supporting Documents</h3>
+        <p class="form-card-sub">Upload clear scans or photographs. All files are encrypted immediately upon upload.</p>
+        <div class="form-group">
+          <label class="form-label">Identity Proof <span>*</span></label>
+          <div class="upload-zone" onclick="fakeUpload('id-proof-name','ID Proof uploaded')">
+            <div class="upload-zone-icon">📄</div>
+            <p><strong>Click to upload</strong> or drag and drop</p>
+            <p style="margin-top:4px">Aadhaar / PAN / Passport · PDF, JPG, PNG · Max 5MB</p>
+            <p id="id-proof-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address Proof <span>*</span></label>
+          <div class="upload-zone" onclick="fakeUpload('addr-proof-name','Address Proof uploaded')">
+            <div class="upload-zone-icon">🏠</div>
+            <p><strong>Click to upload</strong> or drag and drop</p>
+            <p style="margin-top:4px">Utility bill / Bank statement / Aadhaar · Max 5MB</p>
+            <p id="addr-proof-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Recent Photograph <span>*</span></label>
+          <div class="upload-zone" onclick="fakeUpload('photo-name','Photograph uploaded')">
+            <div class="upload-zone-icon">🤳</div>
+            <p><strong>Click to upload</strong> your recent passport-size photograph</p>
+            <p style="margin-top:4px">JPG, PNG · Max 2MB · White background preferred</p>
+            <p id="photo-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:0.5rem">
+          <button class="btn btn-secondary" onclick="nextRegStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="nextRegStep(4)">Review Application →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Review -->
+      <div id="reg-step-4" class="form-card hidden">
+        <h3 class="form-card-title">Review & Submit Application</h3>
+        <p class="form-card-sub">Please review the summary of your application before final submission.</p>
+        <div style="background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.4rem;margin-bottom:1.5rem">
+          <div class="modal-field"><span class="modal-field-label">Document Type</span><span class="modal-field-value" id="review-doc">—</span></div>
+          <div class="modal-field"><span class="modal-field-label">Application Mode</span><span class="modal-field-value">Fresh Application</span></div>
+          <div class="modal-field"><span class="modal-field-label">Processing Time</span><span class="modal-field-value">3–7 working days</span></div>
+          <div class="modal-field"><span class="modal-field-label">Application Fee</span><span class="modal-field-value" style="color:var(--success)">₹0 (Free)</span></div>
+          <div class="modal-field"><span class="modal-field-label">Documents Uploaded</span><span class="modal-field-value status-pill status-active">✓ 3 / 3</span></div>
+        </div>
+        <div class="checkbox-row" style="margin-bottom:1.4rem">
+          <input type="checkbox" id="reg-consent" checked>
+          <label for="reg-consent">I declare that all the information provided is true and correct to the best of my knowledge. I authorise NDIS to process and verify my application through relevant government agencies.</label>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="nextRegStep(3)">← Back</button>
+          <button class="btn btn-accent btn-lg" onclick="submitReg()">Submit Application ✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: DASHBOARD
+════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-user">
+        <div class="dash-user-avatar">SB</div>
+        <div class="dash-user-name">Suprit biswas</div>
+        <div class="dash-user-uid">NDIS-2025-784321</div>
+        <div class="dash-user-badge">✅ KYC Verified</div>
+      </div>
+      <nav class="dash-nav">
+        <div class="dash-nav-section">Main</div>
+        <a class="active" id="dn-overview" onclick="dashSection('overview')"><span class="nav-icon">🏠</span> Overview</a>
+        <a id="dn-documents" onclick="dashSection('documents')"><span class="nav-icon">🪪</span> My Documents</a>
+        <a id="dn-apply" onclick="dashSection('apply')"><span class="nav-icon">📝</span> Apply / Register</a>
+        <a id="dn-activity" onclick="dashSection('activity')"><span class="nav-icon">📋</span> Activity Log</a>
+        <div class="dash-nav-section">Account</div>
+        <a id="dn-profile" onclick="dashSection('profile')"><span class="nav-icon">👤</span> My Profile</a>
+        <a onclick=""><span class="nav-icon">🔒</span> Security Settings</a>
+        <a onclick=""><span class="nav-icon">🔔</span> Notifications <span style="background:var(--danger);color:#fff;font-size:10px;padding:1px 6px;border-radius:999px;margin-left:auto">3</span></a>
+        <div class="dash-nav-section">Support</div>
+        <a onclick="showPage('contact')"><span class="nav-icon">💬</span> Help & Support</a>
+        <a onclick="doLogout()" style="color:var(--danger)"><span class="nav-icon">↩</span> Logout</a>
+      </nav>
+    </aside>
+    <!-- Main content area -->
+    <main class="dash-main" id="dash-main-content">
+      <!-- injected by JS -->
+    </main>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="page-banner">
+    <div class="page-banner-inner">
+      <div class="page-banner-label">Citizen Support</div>
+      <h1>Contact Us</h1>
+      <p>Our dedicated support team is available to assist citizens with any queries about the platform.</p>
+    </div>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h2>We're Here to Help</h2>
+      <p>Reach our citizen support team through any of the channels below. For urgent ID-related matters, use the 24×7 toll-free helpline.</p>
+      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-body"><h4>Toll-Free Helpline</h4><p>1800-111-NDIS (6347)<br><small>Available 24×7 — Free from any network</small></p></div></div>
+      <div class="contact-item"><div class="contact-item-icon">📧</div><div class="contact-item-body"><h4>Email Support</h4><p>support@ndis.gov.in<br><small>Response within 2 business days</small></p></div></div>
+      <div class="contact-item"><div class="contact-item-icon">🏢</div><div class="contact-item-body"><h4>Head Office</h4><p>Electronics Niketan, 6 CGO Complex,<br>Lodhi Road, New Delhi – 110003</p></div></div>
+      <div class="contact-item"><div class="contact-item-icon">💬</div><div class="contact-item-body"><h4>Live Chat</h4><p>Available Monday to Saturday<br><small>9:00 AM – 6:00 PM IST</small></p></div></div>
+      <div class="contact-item"><div class="contact-item-icon">🕐</div><div class="contact-item-body"><h4>Office Hours</h4><p>Monday – Friday: 9:00 AM – 5:30 PM IST<br><small>Closed on National Holidays</small></p></div></div>
+      <div style="margin-top:1.5rem;padding:1.2rem;background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md)">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:0.4rem">⚡ Average Response Times</div>
+        <div style="font-size:12.5px;color:var(--muted)">Phone: &lt;2 minutes · Email: &lt;24 hours · Chat: &lt;5 minutes</div>
+      </div>
+    </div>
+    <div class="contact-form-card">
+      <h3>Send a Message</h3>
+      <p>Fill out the form and our team will get back to you promptly.</p>
+      <div id="contact-success-msg" class="hidden" style="background:rgba(27,122,74,0.08);border:1px solid rgba(27,122,74,0.2);color:var(--success);padding:0.9rem 1rem;border-radius:var(--r-sm);font-size:13.5px;margin-bottom:1.2rem">
+        ✅ Your message has been submitted successfully. We'll respond within 2 business days.
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name <span>*</span></label><input class="form-input" id="ct-fn" type="text" placeholder="First name"></div>
+        <div class="form-group"><label class="form-label">Last Name <span>*</span></label><input class="form-input" id="ct-ln" type="text" placeholder="Last name"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Email <span>*</span></label><input class="form-input" id="ct-email" type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label">Mobile</label><input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">NDIS User ID (if registered)</label>
+        <input class="form-input" type="text" placeholder="NDIS-YYYY-XXXXXX">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject / Issue Category <span>*</span></label>
+        <select class="form-select form-input" id="ct-subject">
+          <option value="">— Select Category —</option>
+          <option>Document Registration Issue</option>
+          <option>Verification Delay</option>
+          <option>Account Access Problem</option>
+          <option>Data Correction Request</option>
+          <option>Download / Upload Issue</option>
+          <option>Fraud / Misuse Report</option>
+          <option>General Inquiry</option>
+          <option>Feedback / Suggestion</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message <span>*</span></label>
+        <textarea class="form-textarea" id="ct-msg" placeholder="Describe your issue or query in detail. Include any relevant reference numbers."></textarea>
+      </div>
+      <div class="checkbox-row" style="margin-bottom:1.4rem">
+        <input type="checkbox" id="ct-consent" checked>
+        <label for="ct-consent">I consent to NDIS using this information to respond to my query as per the Privacy Policy.</label>
+      </div>
+      <button class="btn btn-primary btn-full btn-lg" onclick="sendContactForm()">📨 Send Message</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div><div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:0.6rem">🪪 NDIS</div><p>National Digital Identity System — a Government of India initiative under Digital India.</p></div>
+      <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('signup')">Register</a></div>
+      <div class="footer-col"><h4>Support</h4><a>Help Centre</a><a>Grievance Portal</a><a>RTI</a></div>
+      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Use</a><a>Accessibility</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 National Digital Identity System · Government of India</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     MODAL
+════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- ════════════════════════════════
+     TOAST CONTAINER
+════════════════════════════════ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+/* ── STATE ── */
+let appState = {
+  loggedIn: false,
+  user: { name: 'Suprit Biswas', uid: 'NDIS-2025-784321', email: 'Suprit410@email.com', mobile: '+91 6294301812', dob: '04/12/2006', state: 'West Bengal', address: 'Karimpur,Anandapally,Nadia' },
+  selectedDoc: '',
+  currentDashSection: 'overview',
+};
+
+const DOCS = [
+  { icon:'🪪', name:'Aadhaar Card', num:'XXXX XXXX 5678', status:'active', issued:'12 Mar 2015', expires:'Lifetime', authority:'UIDAI', address:'123, MG Road, Kolkata – 700001' },
+  { icon:'💳', name:'PAN Card', num:'ABCDE1234F', status:'active', issued:'5 Jan 2011', expires:'Lifetime', authority:'Income Tax Department', address:'N/A' },
+  { icon:'🗳️', name:'Voter ID', num:'WB/24/135/678902', status:'active', issued:'10 Aug 2019', expires:'Lifetime', authority:'ECI – West Bengal', address:'123, MG Road, Kolkata' },
+  { icon:'📜', name:'Birth Certificate', num:'KOL/BC/2025/00234', status:'pending', issued:'Pending', expires:'—', authority:'KMC Kolkata', address:'—' },
+  { icon:'🚗', name:'Driving Licence', num:'WB-1920200012345', status:'active', issued:'22 Jun 2020', expires:'21 Jun 2030', authority:'RTO Kolkata', address:'—' },
+  { icon:'🛂', name:'Passport', num:'—', status:'notlinked', issued:'—', expires:'—', authority:'MEA', address:'—' },
+];
+
+/* ── PAGE NAVIGATION ── */
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('page-' + p);
+  if (el) el.classList.add('active');
+  // update nav
+  ['home','about','register','contact'].forEach(n => {
+    const a = document.getElementById('nav-'+n);
+    if(a) a.classList.toggle('active', n === p);
+  });
+  if (p === 'dashboard') { renderDashSection(appState.currentDashSection); }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function requireAuth(page) {
+  if (appState.loggedIn) showPage(page);
+  else { showToast('warning','🔐','Login Required','Please login to access this feature.'); showPage('login'); }
+}
+
+function toggleMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  m.classList.toggle('hidden');
+}
+
+/* ── AUTH ── */
+function doLogin() {
+  appState.loggedIn = true;
+  document.getElementById('header-auth').classList.add('hidden');
+  document.getElementById('header-user').classList.remove('hidden');
+  showPage('dashboard');
+  showToast('success','✅','Login Successful','Welcome back, Rahul Sharma!');
+}
+
+function doSignup() {
+  const name = document.getElementById('su-name').value.trim();
+  if (!name) { showToast('error','⚠️','Validation Error','Please fill in all required fields.'); return; }
+  if (!document.getElementById('su-terms').checked) { showToast('error','⚠️','Consent Required','Please accept the Terms & Privacy Policy.'); return; }
+  showToast('success','📧','Account Created!','OTP sent to your mobile for verification.');
+  setTimeout(() => { doLogin(); }, 1400);
+}
+
+function doLogout() {
+  appState.loggedIn = false;
+  document.getElementById('header-auth').classList.remove('hidden');
+  document.getElementById('header-user').classList.add('hidden');
+  showPage('home');
+  showToast('success','👋','Logged Out','Your session has been securely ended.');
+}
+
+/* ── PASSWORD STRENGTH ── */
+function checkPwStrength(v) {
+  const bars = [document.getElementById('pw-s1'), document.getElementById('pw-s2'), document.getElementById('pw-s3'), document.getElementById('pw-s4')];
+  const label = document.getElementById('pw-label');
+  bars.forEach(b => { b.className = ''; });
+  let score = 0;
+  if (v.length >= 6) score++;
+  if (v.length >= 10) score++;
+  if (/[A-Z]/.test(v) && /[0-9]/.test(v)) score++;
+  if (/[^A-Za-z0-9]/.test(v)) score++;
+  const cls = score <= 1 ? 'weak' : score <= 2 ? 'ok' : 'strong';
+  const labels = ['','Weak','Fair','Good','Strong'];
+  for (let i = 0; i < score; i++) bars[i].className = cls;
+  label.textContent = v ? labels[score] || 'Very Strong' : 'Enter a password';
+}
+
+/* ── REGISTER STEPS ── */
+let currentRegStep = 1;
+function nextRegStep(step) {
+  document.getElementById('reg-step-' + currentRegStep).classList.add('hidden');
+  document.getElementById('reg-step-' + step).classList.remove('hidden');
+  ['rstep-1','rstep-2','rstep-3','rstep-4'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if (i+1 < step) el.classList.add('done');
+    else if (i+1 === step) el.classList.add('active');
+  });
+  currentRegStep = step;
+  if (step === 4) document.getElementById('review-doc').textContent = appState.selectedDoc || 'Aadhaar Card';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectDocType(el, name) {
+  document.querySelectorAll('.doc-type-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  appState.selectedDoc = name;
+  document.getElementById('reg-next-1').disabled = false;
+}
+
+function fakeUpload(id, msg) {
+  document.getElementById(id).textContent = '✓ ' + msg;
+  showToast('success','📎','File Ready','Encrypted and staged for submission.');
+}
+
+function submitReg() {
+  showToast('success','🎉','Application Submitted!','Your application ID is APP-2025-' + Math.floor(Math.random()*90000+10000) + '. Processing in 3–7 working days.');
+  setTimeout(() => {
+    if (appState.loggedIn) showPage('dashboard');
+    else showPage('login');
+  }, 2000);
+}
+
+/* ── DASHBOARD ── */
+function dashSection(s) {
+  appState.currentDashSection = s;
+  document.querySelectorAll('.dash-nav a[id^="dn-"]').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('dn-' + s);
+  if (el) el.classList.add('active');
+  renderDashSection(s);
+}
+
+function renderDashSection(s) {
+  const main = document.getElementById('dash-main-content');
+  if (s === 'overview') main.innerHTML = renderOverview();
+  else if (s === 'documents') main.innerHTML = renderDocuments();
+  else if (s === 'apply') main.innerHTML = renderApply();
+  else if (s === 'activity') main.innerHTML = renderActivity();
+  else if (s === 'profile') main.innerHTML = renderProfile();
+}
+
+function renderOverview() {
+  return `
+    <div class="dash-topbar">
+      <div><h2>Good Morning, Suprit 👋</h2><div class="dash-topbar-sub">Wednesday, 22 April 2025 · Last login: Today, 09:14 AM from Kolkata</div></div>
+      <button class="btn btn-primary btn-sm" onclick="showPage('register')">+ Register Document</button>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-blue"><div class="kpi-label">Total Documents</div><div class="kpi-value">6</div><div class="kpi-sub">4 active · 2 pending</div></div>
+      <div class="kpi-card kpi-amber"><div class="kpi-label">Pending</div><div class="kpi-value">2</div><div class="kpi-sub">Awaiting verification</div></div>
+      <div class="kpi-card kpi-green"><div class="kpi-label">Approved</div><div class="kpi-value">4</div><div class="kpi-sub">Fully verified</div></div>
+      <div class="kpi-card kpi-red"><div class="kpi-label">Rejected</div><div class="kpi-value">0</div><div class="kpi-sub">No rejections</div></div>
+    </div>
+    <div class="section-title">Quick Actions</div>
+    <div class="quick-actions">
+      <div class="qa-card" onclick="showPage('register')"><div class="qa-icon">📤</div><div class="qa-label">Upload Document</div></div>
+      <div class="qa-card" onclick="showToast('success','📥','Ready','Certificate download initiated.')"><div class="qa-icon">📥</div><div class="qa-label">Download Certificate</div></div>
+      <div class="qa-card" onclick="dashSection('profile')"><div class="qa-icon">✏️</div><div class="qa-label">Update Profile</div></div>
+      <div class="qa-card" onclick="showPage('register')"><div class="qa-icon">📝</div><div class="qa-label">Apply for New ID</div></div>
+      <div class="qa-card" onclick="showToast('success','📱','QR Generated','Scan to verify your identity.')"><div class="qa-icon">📱</div><div class="qa-label">Generate QR</div></div>
+      <div class="qa-card" onclick="showPage('contact')"><div class="qa-icon">💬</div><div class="qa-label">Get Support</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+      <div>
+        <div class="section-title">My Documents <span onclick="dashSection('documents')">View All →</span></div>
+        <div>${DOCS.slice(0,4).map((d,i) => `<div class="doc-card" style="margin-bottom:0.8rem" onclick="openDocModal(${i})"><div class="doc-card-top"><div class="doc-icon">${d.icon}</div><span class="status-pill ${d.status==='active'?'status-active':d.status==='pending'?'status-pending':'status-rejected'}">${d.status==='active'?'Active':d.status==='pending'?'Pending':'Not Linked'}</span></div><h4>${d.name}</h4><div class="doc-card-id">${d.num}</div><div class="doc-card-actions">${d.status==='active'?`<button class="btn btn-sm" style="background:rgba(15,52,96,0.08);color:var(--navy)" onclick="event.stopPropagation();openDocModal(${i})">View</button><button class="btn btn-sm" style="background:rgba(27,122,74,0.08);color:var(--success)" onclick="event.stopPropagation();showToast('success','📥','Downloading','${d.name} PDF ready.')">Download</button>`:`<button class="btn btn-sm" style="background:rgba(180,83,9,0.08);color:var(--warn)" onclick="event.stopPropagation();showToast('success','⏳','Pending Review','Your document is under verification.')">Check Status</button>`}</div></div>`).join('')}</div>
+      </div>
+      <div>
+        <div class="section-title">Notifications</div>
+        <div class="notif-panel">
+          <div class="notif-item"><div class="notif-icon" style="background:rgba(27,122,74,0.1)">✅</div><div><b class="notif-text">Aadhaar Card Verified</b><div class="notif-text">Your Aadhaar has been verified and linked to your NDIS account.</div><div class="notif-time">Today, 09:14 AM</div></div></div>
+          <div class="notif-item"><div class="notif-icon" style="background:rgba(180,83,9,0.1)">⏳</div><div><b class="notif-text">Birth Certificate Pending</b><div class="notif-text">Your application is under review. Expected completion in 2–3 days.</div><div class="notif-time">Yesterday, 3:22 PM</div></div></div>
+          <div class="notif-item"><div class="notif-icon" style="background:rgba(21,101,192,0.1)">📧</div><div><b class="notif-text">OTP Verification Complete</b><div class="notif-text">Your mobile number has been successfully verified.</div><div class="notif-time">20 Apr, 11:05 AM</div></div></div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <div class="section-title">Account Security</div>
+          <div class="security-widget">
+            <div style="display:flex;align-items:center;gap:1rem">
+              <div class="security-score-ring"><div class="security-score-inner">86</div></div>
+              <div>
+                <div style="font-weight:700;color:var(--ink)">Security Score: Good</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px">Complete biometric setup to reach 100</div>
+                <div class="progress-bar" style="margin-top:8px;width:160px"><div class="progress-fill" style="width:86%"></div></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;font-size:12px">
+              <div class="status-pill status-active">✓ 2FA On</div>
+              <div class="status-pill status-active">✓ Email Verified</div>
+              <div class="status-pill status-active">✓ Mobile Verified</div>
+              <div class="status-pill status-pending">⚠ Biometric Pending</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderDocuments() {
+  return `
+    <div class="dash-topbar">
+      <div><h2>My Documents</h2><div class="dash-topbar-sub">All your government identity documents in one encrypted vault</div></div>
+      <button class="btn btn-primary btn-sm" onclick="showPage('register')">+ Add Document</button>
+    </div>
+    <div class="doc-grid">
+      ${DOCS.map((d,i) => `
+        <div class="doc-card" onclick="openDocModal(${i})">
+          <div class="doc-card-top"><div class="doc-icon">${d.icon}</div><span class="status-pill ${d.status==='active'?'status-active':d.status==='pending'?'status-pending':'status-rejected'}">${d.status==='active'?'Active':d.status==='pending'?'Pending':'Not Linked'}</span></div>
+          <h4>${d.name}</h4>
+          <div class="doc-card-id">${d.num}</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-bottom:0.7rem">Issued: ${d.issued}</div>
+          <div class="doc-card-actions">
+            ${d.status==='active'
+              ? `<button class="btn btn-sm" style="background:rgba(15,52,96,0.08);color:var(--navy)" onclick="event.stopPropagation();openDocModal(${i})">View Details</button>
+                 <button class="btn btn-sm" style="background:rgba(27,122,74,0.08);color:var(--success)" onclick="event.stopPropagation();showToast('success','📥','Downloading','${d.name} ready.')">Download</button>`
+              : d.status==='pending'
+              ? `<button class="btn btn-sm" style="background:rgba(180,83,9,0.08);color:var(--warn)" onclick="event.stopPropagation()">Check Status</button>`
+              : `<button class="btn btn-sm btn-accent" onclick="event.stopPropagation();showPage('register')">Apply Now →</button>`}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderApply() {
+  return `
+    <div class="dash-topbar"><div><h2>Apply for Document</h2><div class="dash-topbar-sub">Choose the document you want to register or apply for</div></div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem">
+      ${[{icon:'🪪',name:'Aadhaar Card'},{icon:'🗳️',name:'Voter ID Card'},{icon:'💳',name:'PAN Card'},{icon:'📜',name:'Birth Certificate'},{icon:'🚗',name:'Driving Licence'},{icon:'🛂',name:'Passport'},{icon:'🏘️',name:'Ration Card'},{icon:'📋',name:'Caste Certificate'}].map(d => `
+        <div class="service-card" onclick="showPage('register')" style="text-align:center">
+          <div class="service-icon" style="margin:0 auto 1rem">${d.icon}</div>
+          <h3>${d.name}</h3>
+          <p style="font-size:0.8rem">Click to start application</p>
+          <div class="service-card-link" style="justify-content:center;margin-top:0.8rem">Apply →</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderActivity() {
+  const items = [
+    {dot:'var(--success)',title:'<b>Aadhaar Card</b> verified successfully',time:'Today, 09:14 AM'},
+    {dot:'var(--sky)',title:'<b>PAN Card</b> downloaded in PDF format',time:'Yesterday, 03:42 PM'},
+    {dot:'var(--amber)',title:'<b>Birth Certificate</b> application submitted (APP-2025-38221)',time:'20 Apr, 11:23 AM'},
+    {dot:'var(--success)',title:'Profile details updated (address changed)',time:'18 Apr, 2:00 PM'},
+    {dot:'var(--sky)',title:'Login from new device — Chrome, Kolkata, West Bengal',time:'16 Apr, 10:05 AM'},
+    {dot:'var(--success)',title:'<b>Driving Licence</b> linked to NDIS account',time:'10 Apr, 9:30 AM'},
+    {dot:'var(--sky)',title:'<b>Voter ID</b> QR code generated and shared',time:'5 Apr, 4:15 PM'},
+    {dot:'var(--success)',title:'Account created and email verified',time:'1 Apr, 10:00 AM'},
+  ];
+  return `
+    <div class="dash-topbar"><div><h2>Activity Log</h2><div class="dash-topbar-sub">All actions and events on your NDIS account</div></div></div>
+    <div class="activity-list">
+      ${items.map(a => `<div class="activity-item"><div class="activity-dot" style="background:${a.dot}"></div><div class="activity-body"><div class="activity-title">${a.title}</div><div class="activity-time">${a.time}</div></div></div>`).join('')}
+    </div>`;
+}
+
+function renderProfile() {
+  const u = appState.user;
+  return `
+    <div class="dash-topbar"><div><h2>My Profile</h2><div class="dash-topbar-sub">Manage your personal details and preferences</div></div></div>
+    <div class="profile-card" style="margin-bottom:1.5rem">
+      <div class="profile-avatar-row">
+        <div class="profile-avatar-big">RS</div>
+        <div>
+          <div class="profile-name">${u.name}</div>
+          <div class="profile-uid">${u.uid}</div>
+          <div style="display:flex;gap:0.5rem;margin-top:6px"><div class="status-pill status-active">✅ KYC Verified</div><div class="status-pill status-active">🔒 2FA Enabled</div></div>
+        </div>
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto" onclick="showToast('success','✏️','Edit Mode','Profile edit form opened.')">Edit Profile</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        ${[['Full Name',u.name],['Email',u.email],['Mobile',u.mobile],['Date of Birth',u.dob],['State',u.state],['Address',u.address]].map(([k,v]) => `
+          <div class="form-group">
+            <label class="form-label">${k}</label>
+            <input class="form-input" value="${v}" readonly style="background:var(--mist)">
+          </div>`).join('')}
+      </div>
+      <div style="margin-top:1rem;display:flex;gap:0.8rem">
+        <button class="btn btn-primary" onclick="showToast('success','✅','Saved','Profile updated successfully.')">Save Changes</button>
+        <button class="btn btn-secondary" onclick="showToast('success','📧','OTP Sent','Verification OTP sent to your email.')">Change Password</button>
+      </div>
+    </div>`;
+}
+
+/* ── DOC MODAL ── */
+function openDocModal(i) {
+  const d = DOCS[i];
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-box').innerHTML = `
+    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
+    <div class="modal-icon">${d.icon}</div>
+    <h3 class="modal-title">${d.name}</h3>
+    <div class="modal-sub">${d.num}</div>
+    <div class="modal-field"><span class="modal-field-label">Status</span><span class="modal-field-value"><span class="status-pill ${d.status==='active'?'status-active':'status-pending'}">${d.status==='active'?'✓ Active':'⏳ Pending'}</span></span></div>
+    <div class="modal-field"><span class="modal-field-label">Issued On</span><span class="modal-field-value">${d.issued}</span></div>
+    <div class="modal-field"><span class="modal-field-label">Valid Until</span><span class="modal-field-value">${d.expires}</span></div>
+    <div class="modal-field"><span class="modal-field-label">Issuing Authority</span><span class="modal-field-value">${d.authority}</span></div>
+    <div class="modal-field"><span class="modal-field-label">Registered Address</span><span class="modal-field-value">${d.address}</span></div>
+    <div style="display:flex;gap:0.8rem;margin-top:1.6rem;flex-wrap:wrap">
+      ${d.status === 'active'
+        ? `<button class="btn btn-primary" style="flex:1;justify-content:center" onclick="showToast('success','📥','Downloading','${d.name} PDF ready.');document.getElementById('modal-overlay').classList.remove('open')">📥 Download PDF</button>
+           <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="showToast('success','📱','QR Generated','Time-limited QR code created.');document.getElementById('modal-overlay').classList.remove('open')">📱 Share QR Code</button>`
+        : `<button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="document.getElementById('modal-overlay').classList.remove('open')">Close</button>`}
+    </div>`;
+  overlay.classList.add('open');
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+
+/* ── CONTACT ── */
+function sendContactForm() {
+  const fn = document.getElementById('ct-fn').value.trim();
+  const email = document.getElementById('ct-email').value.trim();
+  const msg = document.getElementById('ct-msg').value.trim();
+  if (!fn || !email || !msg) { showToast('error','⚠️','Incomplete Form','Please fill all required fields.'); return; }
+  document.getElementById('contact-success-msg').classList.remove('hidden');
+  showToast('success','📨','Message Sent','We\'ll respond within 2 business days.');
+}
+
+/* ── TOAST ── */
+let toastCount = 0;
+function showToast(type, icon, title, msg) {
+  const container = document.getElementById('toast-container');
+  const id = 'toast-' + (++toastCount);
+  const div = document.createElement('div');
+  div.className = `toast toast-${type}`;
+  div.id = id;
+  div.innerHTML = `<span class="toast-icon">${icon}</span><div class="toast-content"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div>`;
+  container.appendChild(div);
+  setTimeout(() => { div.style.opacity = '0'; div.style.transition = 'opacity 0.3s'; setTimeout(() => div.remove(), 350); }, 3500);
+}
+
+/* ── COUNTER ANIMATION ── */
+function animateCounter(id, target, suffix='') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let cur = 0, steps = 60, step = target / steps;
+  const interval = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = (cur >= 1000000 ? (cur/1000000).toFixed(1)+'M' : cur >= 1000 ? (cur/1000).toFixed(0)+'K' : Math.round(cur)) + suffix;
+    if (cur >= target) clearInterval(interval);
+  }, 20);
+}
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    animateCounter('stat1', 140000000);
+    animateCounter('stat2', 420000000);
+    animateCounter('stat3', 48200);
+    animateCounter('stat4', 36);
+  }, 400);
+});
+</script>
+</body>
+</html>
