@@ -316,37 +316,43 @@ header {
 
 /* stats band */
 .stats-band {
-  background: var(--white);
-  padding: 3.5rem 2rem;
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--ink) 0%, var(--navy) 50%, var(--blue) 100%);
+  padding: 4rem 2rem; position:relative; overflow:hidden;
+}
+.stats-band::before {
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(circle at 25px 25px, rgba(255,255,255,0.03) 2px, transparent 2px);
+  background-size:50px 50px;
 }
 .stats-band-inner {
-  max-width: 1260px; margin: 0 auto;
+  max-width: 1260px; margin: 0 auto; position:relative; z-index:1;
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
-.stat-item { text-align: center; }
+.stat-item { text-align: center; padding:1.2rem; border-radius:var(--r-md); transition:background 0.2s; }
+.stat-item:hover { background:rgba(255,255,255,0.06); }
 .stat-num {
   font-family: 'IBM Plex Serif', serif;
-  font-size: 2.4rem; font-weight: 700; color: var(--navy);
+  font-size: 2.6rem; font-weight: 700; color: var(--white);
   line-height: 1;
 }
-.stat-label { font-size: 13px; color: var(--muted); margin-top: 0.4rem; font-weight: 500; }
-.stat-divider { border-right: 1px solid var(--border); }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 0.5rem; font-weight: 500; }
+.stat-divider { border-right: 1px solid rgba(255,255,255,0.1); }
 
 /* sections */
 .section { padding: 5rem 2rem; }
 .section-inner { max-width: 1260px; margin: 0 auto; }
 .section-tag {
   display: inline-block;
-  background: var(--ghost); color: var(--navy);
+  background: linear-gradient(135deg, rgba(15,52,96,0.08), rgba(0,151,167,0.08));
+  color: var(--navy);
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.3rem 0.85rem; border-radius: 999px;
-  margin-bottom: 0.9rem; border: 1px solid var(--border);
+  padding: 0.35rem 1rem; border-radius: 999px;
+  margin-bottom: 1rem; border: 1px solid rgba(15,52,96,0.12);
 }
-.section h2 { font-size: clamp(1.7rem, 2.5vw, 2.4rem); margin-bottom: 0.7rem; }
-.section-desc { font-size: 1rem; max-width: 520px; color: var(--muted); }
+.section h2 { font-size: clamp(1.7rem, 2.5vw, 2.4rem); margin-bottom: 0.8rem; letter-spacing:-0.01em; }
+.section-desc { font-size: 1.05rem; max-width: 540px; color: var(--muted); line-height:1.7; }
 .section-center { text-align: center; }
 .section-center .section-desc { margin: 0 auto; }
 
@@ -373,12 +379,14 @@ header {
 .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--ghost); }
 .service-card:hover::after { transform: scaleX(1); }
 .service-icon {
-  width: 52px; height: 52px;
+  width: 56px; height: 56px;
   border-radius: var(--r-md);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 1.2rem;
-  background: var(--mist); border: 1px solid var(--border);
+  font-size: 1.6rem; margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, var(--mist), var(--ghost));
+  border: 1px solid var(--border); transition:transform 0.2s;
 }
+.service-card:hover .service-icon { transform:scale(1.1); }
 .service-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; }
 .service-card p { font-size: 0.875rem; color: var(--muted); }
 .service-card-link {
@@ -397,29 +405,36 @@ header {
   background: var(--white); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 2rem;
   display: flex; gap: 1.2rem; align-items: flex-start;
+  transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
+.feature-item:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--ghost); }
 .feature-icon-box {
-  width: 44px; height: 44px; border-radius: var(--r-md);
+  width: 48px; height: 48px; border-radius: var(--r-md);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; flex-shrink: 0;
+  font-size: 1.3rem; flex-shrink: 0; transition:transform 0.2s;
 }
+.feature-item:hover .feature-icon-box { transform:scale(1.1); }
 .feature-item h3 { font-size: 0.95rem; font-weight: 600; font-family: 'IBM Plex Sans', sans-serif; margin-bottom: 0.4rem; }
-.feature-item p { font-size: 0.85rem; color: var(--muted); }
+.feature-item p { font-size: 0.85rem; color: var(--muted); line-height:1.7; }
 
 /* CTA band */
 .cta-band {
-  background: linear-gradient(135deg, var(--navy), var(--blue));
-  padding: 4rem 2rem; text-align: center;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--navy) 40%, var(--blue) 70%, var(--mid) 100%);
+  padding: 4.5rem 2rem; text-align: center;
   position: relative; overflow: hidden;
 }
 .cta-band::before {
   content:''; position:absolute; inset:0;
-  background-image: radial-gradient(circle at 30px 30px, rgba(255,255,255,0.03) 2px, transparent 2px);
+  background-image: radial-gradient(circle at 30px 30px, rgba(255,255,255,0.035) 2px, transparent 2px);
   background-size: 60px 60px;
 }
-.cta-band-inner { position:relative; z-index:1; max-width: 600px; margin: 0 auto; }
-.cta-band h2 { color:var(--white); font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom:0.8rem; }
-.cta-band p { color:rgba(255,255,255,0.72); margin-bottom:2rem; }
+.cta-band::after {
+  content:''; position:absolute; top:-80px; right:-80px; width:260px; height:260px;
+  border-radius:50%; background:radial-gradient(circle, rgba(0,151,167,0.15), transparent 70%);
+}
+.cta-band-inner { position:relative; z-index:1; max-width: 640px; margin: 0 auto; }
+.cta-band h2 { color:var(--white); font-size: clamp(1.7rem, 2.8vw, 2.4rem); margin-bottom:0.8rem; letter-spacing:-0.01em; }
+.cta-band p { color:rgba(255,255,255,0.75); margin-bottom:2rem; font-size:1.05rem; line-height:1.7; }
 .cta-band-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
 /* ════════════════════════════════════════════
@@ -790,7 +805,12 @@ header {
 ════════════════════════════════════════════ */
 footer {
   background: var(--ink);
-  padding: 3.5rem 2rem 0;
+  padding: 4rem 2rem 0;
+  position:relative;
+}
+footer::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--navy), var(--teal), var(--sky), var(--mid));
 }
 .footer-inner {
   max-width: 1260px; margin: 0 auto;
@@ -798,12 +818,14 @@ footer {
   padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .footer-brand p { color:rgba(255,255,255,0.5); font-size:0.85rem; margin-top:0.8rem; max-width:280px; line-height:1.7; }
-.footer-col h4 { font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:700; color:rgba(255,255,255,0.9); margin-bottom:1rem; letter-spacing:0.04em; }
-.footer-col a { display:block; color:rgba(255,255,255,0.45); font-size:0.85rem; text-decoration:none; margin-bottom:0.5rem; cursor:pointer; transition:color 0.15s; }
-.footer-col a:hover { color:rgba(255,255,255,0.85); }
-.footer-bottom { max-width:1260px; margin:0 auto; padding:1.4rem 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
+.footer-col h4 { font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:700; color:rgba(255,255,255,0.9); margin-bottom:1.2rem; letter-spacing:0.04em; position:relative; padding-bottom:0.6rem; }
+.footer-col h4::after { content:''; position:absolute; bottom:0; left:0; width:24px; height:2px; background:var(--teal); border-radius:2px; }
+.footer-col a { display:block; color:rgba(255,255,255,0.45); font-size:0.85rem; text-decoration:none; margin-bottom:0.6rem; cursor:pointer; transition:all 0.2s; padding-left:0; }
+.footer-col a:hover { color:rgba(255,255,255,0.9); padding-left:4px; }
+.footer-bottom { max-width:1260px; margin:0 auto; padding:1.6rem 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
 .footer-bottom p { color:rgba(255,255,255,0.35); font-size:12px; }
-.footer-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.45); font-size:11px; padding:4px 10px; border-radius:999px; }
+.footer-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); font-size:11px; padding:5px 12px; border-radius:999px; transition:all 0.2s; }
+.footer-badge:hover { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); }
 
 /* ════════════════════════════════════════════
    MODAL
@@ -848,6 +870,211 @@ footer {
 .toast-msg { font-size:12px; color:var(--muted); margin-top:2px; }
 
 /* ════════════════════════════════════════════
+   OVERVIEW SECTION
+════════════════════════════════════════════ */
+.overview-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:3.5rem; align-items:center; margin-top:2.5rem;
+}
+.overview-text p { font-size:0.95rem; color:var(--sub); line-height:1.85; margin-bottom:1.2rem; }
+.overview-text p:first-child { font-size:1.05rem; color:var(--text); font-weight:500; }
+.overview-mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+.overview-mini-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:1.5rem 1.2rem; text-align:center; transition:all 0.25s;
+  position:relative; overflow:hidden;
+}
+.overview-mini-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--navy), var(--teal)); opacity:0; transition:opacity 0.25s;
+}
+.overview-mini-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.overview-mini-card:hover::before { opacity:1; }
+.overview-mini-icon { font-size:2rem; margin-bottom:0.6rem; display:inline-block; transition:transform 0.25s; }
+.overview-mini-card:hover .overview-mini-icon { transform:scale(1.15); }
+.overview-mini-card h4 { font-size:0.88rem; font-family:'IBM Plex Sans',sans-serif; font-weight:700; color:var(--navy); margin-bottom:0.25rem; }
+.overview-mini-card p { font-size:0.78rem; color:var(--muted); line-height:1.5; }
+
+/* ════════════════════════════════════════════
+   BENEFITS SECTION
+════════════════════════════════════════════ */
+.benefits-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.4rem; margin-top:2.5rem;
+}
+.benefit-card {
+  background:var(--white); border:1px solid var(--border); border-left:4px solid var(--navy);
+  border-radius:var(--r-md); padding:1.8rem 1.6rem; display:flex; gap:1.3rem; align-items:flex-start;
+  transition:all 0.25s;
+}
+.benefit-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:transparent; border-left-width:4px; }
+.benefit-card:nth-child(2) { border-left-color:var(--teal); }
+.benefit-card:nth-child(3) { border-left-color:var(--success); }
+.benefit-card:nth-child(4) { border-left-color:var(--sky); }
+.benefit-card:nth-child(5) { border-left-color:var(--amber); }
+.benefit-card:nth-child(6) { border-left-color:var(--mid); }
+.benefit-icon {
+  width:52px; height:52px; border-radius:var(--r-md); display:flex; align-items:center;
+  justify-content:center; font-size:1.5rem; flex-shrink:0;
+  background:linear-gradient(135deg, var(--mist), var(--ghost)); border:1px solid var(--border);
+  transition:transform 0.25s;
+}
+.benefit-card:hover .benefit-icon { transform:scale(1.1); }
+.benefit-card h3 { font-size:0.98rem; font-family:'IBM Plex Sans',sans-serif; font-weight:700; color:var(--ink); margin-bottom:0.35rem; }
+.benefit-card p { font-size:0.85rem; color:var(--muted); line-height:1.7; }
+
+/* ════════════════════════════════════════════
+   ELIGIBILITY SECTION
+════════════════════════════════════════════ */
+.elig-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; margin-top:2.5rem;
+}
+.elig-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:2.2rem; position:relative; overflow:hidden; transition:all 0.25s;
+}
+.elig-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--navy), var(--teal));
+}
+.elig-card:nth-child(2)::before { background:linear-gradient(90deg, var(--teal), var(--sky)); }
+.elig-card:nth-child(3)::before { background:linear-gradient(90deg, var(--sky), var(--mid)); }
+.elig-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.elig-card-icon { font-size:2.4rem; margin-bottom:1rem; display:inline-block; transition:transform 0.25s; }
+.elig-card:hover .elig-card-icon { transform:scale(1.15); }
+.elig-card h3 { font-size:1.1rem; font-family:'IBM Plex Sans',sans-serif; font-weight:700; color:var(--ink); margin-bottom:0.9rem; }
+.elig-list { list-style:none; padding:0; }
+.elig-list li { font-size:0.88rem; color:var(--sub); padding:0.4rem 0; padding-left:1.5rem; position:relative; line-height:1.6; }
+.elig-list li::before { content:'✓'; position:absolute; left:0; color:var(--success); font-weight:700; }
+.elig-note {
+  background:var(--mist); border:1px solid var(--border); border-radius:var(--r-md);
+  padding:1.2rem 1.5rem; margin-top:2rem; display:flex; gap:0.8rem; align-items:flex-start;
+}
+.elig-note-icon { font-size:1.3rem; flex-shrink:0; }
+.elig-note p { font-size:0.85rem; color:var(--sub); }
+.elig-note strong { color:var(--navy); }
+
+/* ════════════════════════════════════════════
+   STEP-BY-STEP GUIDES
+════════════════════════════════════════════ */
+.guide-tabs {
+  display:flex; gap:0.6rem; margin-bottom:2.5rem; flex-wrap:wrap; justify-content:center;
+}
+.guide-tab {
+  padding:0.7rem 1.6rem; border-radius:999px; font-size:13.5px; font-weight:600;
+  cursor:pointer; border:1.5px solid var(--border); background:var(--white); color:var(--muted);
+  transition:all 0.25s; font-family:'IBM Plex Sans',sans-serif;
+}
+.guide-tab:hover { border-color:var(--sky); color:var(--navy); background:var(--mist); }
+.guide-tab.active { background:linear-gradient(135deg, var(--navy), var(--blue)); color:var(--white); border-color:var(--navy); box-shadow:0 4px 12px rgba(15,52,96,0.3); }
+.guide-content { display:none; animation:pageFade 0.3s ease; }
+.guide-content.active { display:block; }
+.guide-steps {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:1.5rem; position:relative;
+}
+.guide-step {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:2rem 1.5rem 1.6rem; text-align:center; position:relative;
+  transition:all 0.25s; overflow:hidden;
+}
+.guide-step::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--navy), var(--teal));
+  opacity:0; transition:opacity 0.25s;
+}
+.guide-step:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.guide-step:hover::before { opacity:1; }
+.guide-step-num {
+  width:40px; height:40px; border-radius:50%; margin:0 auto 1rem;
+  background:linear-gradient(135deg, var(--navy), var(--blue)); color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:700; box-shadow:0 3px 10px rgba(15,52,96,0.3);
+  position:relative;
+}
+.guide-step h4 { font-size:0.95rem; font-family:'IBM Plex Sans',sans-serif; font-weight:700; color:var(--ink); margin-bottom:0.4rem; }
+.guide-step p { font-size:0.84rem; color:var(--muted); line-height:1.7; }
+
+/* ════════════════════════════════════════════
+   FAQ SECTION
+════════════════════════════════════════════ */
+.faq-list { max-width:820px; margin:2.5rem auto 0; }
+.faq-item {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-md);
+  margin-bottom:0.8rem; overflow:hidden; transition:all 0.25s;
+  border-left:3px solid transparent;
+}
+.faq-item:hover { box-shadow:var(--shadow-sm); border-left-color:var(--sky); }
+.faq-item.open { border-left-color:var(--navy); box-shadow:var(--shadow-md); }
+.faq-question {
+  display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.5rem;
+  cursor:pointer; font-size:0.95rem; font-weight:600; color:var(--ink);
+  font-family:'IBM Plex Sans',sans-serif; gap:1rem; user-select:none; transition:color 0.2s;
+}
+.faq-question:hover { color:var(--navy); }
+.faq-chevron {
+  font-size:0.7rem; color:var(--silver); transition:transform 0.3s, color 0.3s; flex-shrink:0;
+  width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; background:var(--mist);
+}
+.faq-item.open .faq-chevron { transform:rotate(180deg); color:var(--white); background:var(--navy); }
+.faq-answer {
+  max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.4s ease;
+  padding:0 1.5rem; font-size:0.9rem; color:var(--sub); line-height:1.85;
+}
+.faq-item.open .faq-answer {
+  max-height:300px; padding:0 1.5rem 1.4rem;
+}
+
+/* ════════════════════════════════════════════
+   NEWS & NOTIFICATIONS
+════════════════════════════════════════════ */
+.news-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.4rem; margin-top:2.5rem;
+}
+.news-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:1.6rem; border-top:4px solid var(--navy); transition:all 0.25s;
+  position:relative; overflow:hidden;
+}
+.news-card::after {
+  content:''; position:absolute; inset:0; opacity:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(15,52,96,0.03));
+  transition:opacity 0.25s;
+}
+.news-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.news-card:hover::after { opacity:1; }
+.news-card.news-maintenance { border-top-color:var(--amber); }
+.news-card.news-announcement { border-top-color:var(--teal); }
+.news-badge {
+  display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700;
+  padding:4px 12px; border-radius:999px; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.9rem;
+}
+.news-badge-update { background:rgba(15,52,96,0.08); color:var(--navy); }
+.news-badge-maintenance { background:rgba(229,148,0,0.1); color:var(--warn); }
+.news-badge-announcement { background:rgba(0,151,167,0.1); color:var(--teal); }
+.news-card h4 { font-size:0.98rem; font-family:'IBM Plex Sans',sans-serif; font-weight:700; color:var(--ink); margin-bottom:0.45rem; position:relative; z-index:1; }
+.news-card p { font-size:0.88rem; color:var(--muted); margin-bottom:0.8rem; line-height:1.7; position:relative; z-index:1; }
+.news-date { font-size:11.5px; color:var(--silver); font-weight:600; position:relative; z-index:1; }
+
+/* ════════════════════════════════════════════
+   HELP ARTICLES
+════════════════════════════════════════════ */
+.help-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1.4rem; margin-top:2.5rem;
+}
+.help-card {
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--r-lg); padding:1.8rem; text-align:center;
+  transition:all 0.25s; backdrop-filter:blur(4px);
+}
+.help-card:hover { transform:translateY(-5px); background:rgba(255,255,255,0.12); box-shadow:0 8px 32px rgba(0,0,0,0.15); border-color:rgba(255,255,255,0.2); }
+.help-card-icon { font-size:2.2rem; margin-bottom:0.9rem; display:inline-block; transition:transform 0.25s; }
+.help-card:hover .help-card-icon { transform:scale(1.15); }
+.help-card h4 { font-size:0.95rem; color:var(--white); font-family:'IBM Plex Sans',sans-serif; font-weight:700; margin-bottom:0.5rem; }
+.help-card p { font-size:0.82rem; color:rgba(255,255,255,0.6); margin-bottom:1rem; line-height:1.6; }
+.help-card-link { font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.85); text-decoration:none; letter-spacing:0.02em; padding:0.35rem 0.8rem; border-radius:999px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s; }
+.help-card-link:hover { color:var(--white); background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.35); }
+
+/* ════════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════════ */
 @media (max-width: 1024px) {
@@ -865,6 +1092,11 @@ footer {
   .dash-layout { grid-template-columns:1fr; }
   .dash-sidebar { display:none; }
   .contact-layout { grid-template-columns:1fr; }
+  .overview-grid { grid-template-columns:1fr; }
+  .benefits-grid { grid-template-columns:1fr; }
+  .elig-grid { grid-template-columns:1fr; }
+  .news-grid { grid-template-columns:1fr; }
+  .help-grid { grid-template-columns:1fr 1fr; }
 }
 @media (max-width: 600px) {
   .stats-band-inner { grid-template-columns:1fr 1fr; gap:1.5rem; }
@@ -875,6 +1107,10 @@ footer {
   .header-inner { padding:0 1rem; }
   .main-nav { display:none; }
   .hamburger { display:flex; }
+  .overview-mini-grid { grid-template-columns:1fr; }
+  .help-grid { grid-template-columns:1fr; }
+  .guide-steps { padding-left:2rem; }
+  .guide-step-num { left:-2rem; width:28px; height:28px; font-size:11px; }
 }
 </style>
 </head>
@@ -910,6 +1146,8 @@ footer {
       <a id="nav-about" onclick="showPage('about')">About</a>
       <a id="nav-register" onclick="requireAuth('register')">Register</a>
       <a id="nav-contact" onclick="showPage('contact')">Contact</a>
+      <a id="nav-terms" onclick="showPage('terms')">Terms & Conditions</a>
+      <a id="nav-admin" onclick="showPage('admin-login')">Admin</a>
     </nav>
     <div class="header-actions" id="header-auth">
       <button class="btn btn-secondary btn-sm" onclick="showPage('login')">Login</button>
@@ -927,6 +1165,8 @@ footer {
     <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('about');toggleMobileMenu()">About</a>
     <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="requireAuth('register');toggleMobileMenu()">Register</a>
     <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('contact');toggleMobileMenu()">Contact Us</a>
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('terms');toggleMobileMenu()">Terms & Conditions</a>
+    <a style="padding:0.5rem;color:var(--sub);cursor:pointer;font-size:14px" onclick="showPage('admin-login');toggleMobileMenu()">Admin</a>
     <div style="display:flex;gap:0.6rem;margin-top:0.5rem">
       <button class="btn btn-secondary btn-sm" onclick="showPage('login');toggleMobileMenu()">Login</button>
       <button class="btn btn-primary btn-sm" onclick="showPage('signup');toggleMobileMenu()">Sign Up</button>
@@ -999,6 +1239,80 @@ footer {
     </div>
   </div>
 
+  <!-- Overview -->
+  <section class="section" style="background:var(--snow);">
+    <div class="section-inner">
+      <div class="section-tag">About NDIS</div>
+      <h2>India's Unified Digital<br>Identity Platform</h2>
+      <div class="overview-grid">
+        <div class="overview-text">
+          <p>The National Digital Identity System (NDIS) is a flagship initiative of the Ministry of Electronics & Information Technology under the Digital India programme. It provides every Indian citizen with a secure, unified digital identity vault.</p>
+          <p>NDIS eliminates the need to carry physical documents or stand in queues at government offices. Citizens can store, access, verify, and apply for all government-issued identity documents — from Aadhaar and PAN to Passport and Driving Licence — with military-grade encryption and instant accessibility.</p>
+          <p>Built with a zero-knowledge architecture, NDIS ensures that only you hold the keys to your data. All access events are immutably logged, providing full transparency and auditability of every interaction with your identity vault.</p>
+        </div>
+        <div class="overview-mini-grid">
+          <div class="overview-mini-card">
+            <div class="overview-mini-icon">🔒</div>
+            <h4>Secure Vault</h4>
+            <p>AES-256 encrypted document storage</p>
+          </div>
+          <div class="overview-mini-card">
+            <div class="overview-mini-icon">⚡</div>
+            <h4>Instant Access</h4>
+            <p>24/7 access from any device</p>
+          </div>
+          <div class="overview-mini-card">
+            <div class="overview-mini-icon">🏛️</div>
+            <h4>Gov-Verified</h4>
+            <p>Direct integration with UIDAI, IT Dept & ECI</p>
+          </div>
+          <div class="overview-mini-card">
+            <div class="overview-mini-icon">📱</div>
+            <h4>Mobile Ready</h4>
+            <p>QR-based verification on the go</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section" style="background:var(--white);border-top:1px solid var(--border);">
+    <div class="section-inner section-center">
+      <div class="section-tag">Benefits</div>
+      <h2>Why Go Digital With<br>Your Identity?</h2>
+      <p class="section-desc">Discover the advantages of managing your government IDs through NDIS.</p>
+    </div>
+    <div class="section-inner">
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🚫</div>
+          <div><h3>No Physical Queues</h3><p>Apply for and manage documents entirely online. No visits to government offices or waiting in lines.</p></div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">✅</div>
+          <div><h3>Instant Verification</h3><p>Verify your identity in seconds using time-limited QR codes. Accepted by banks, telecom, and government agencies.</p></div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <div><h3>Fraud Protection</h3><p>Immutable audit logs, anomaly detection, and real-time alerts safeguard your identity against misuse.</p></div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📦</div>
+          <div><h3>Single Platform</h3><p>One secure vault for Aadhaar, PAN, Voter ID, Passport, Driving Licence, Birth Certificate and more.</p></div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔔</div>
+          <div><h3>Expiry Alerts</h3><p>Automated SMS and email reminders before your Passport, Driving Licence, or other documents expire.</p></div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌐</div>
+          <div><h3>Cross-Platform Access</h3><p>Access from desktop, mobile, or tablet. DigiLocker integration for seamless document sync.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Services -->
   <section class="section" style="background:var(--white);border-top:1px solid var(--border);">
     <div class="section-inner section-center">
@@ -1043,6 +1357,131 @@ footer {
           <h3>Passport</h3>
           <p>Indian Passport issued by the Ministry of External Affairs for international travel.</p>
           <div class="service-card-link">Apply / Link →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section class="section" style="background:var(--mist);">
+    <div class="section-inner section-center">
+      <div class="section-tag">Eligibility</div>
+      <h2>Who Can Register<br>on NDIS?</h2>
+      <p class="section-desc">NDIS is available to all Indian citizens and eligible residents. Check if you qualify.</p>
+    </div>
+    <div class="section-inner">
+      <div class="elig-grid">
+        <div class="elig-card">
+          <div class="elig-card-icon">🇮🇳</div>
+          <h3>Indian Citizens</h3>
+          <ul class="elig-list">
+            <li>Must be an Indian citizen (by birth or naturalisation)</li>
+            <li>Minimum age: 18 years (or guardian registration for minors)</li>
+            <li>Valid Aadhaar card or Aadhaar enrolment number</li>
+            <li>Active mobile number linked to Aadhaar</li>
+            <li>Valid email address for account verification</li>
+          </ul>
+        </div>
+        <div class="elig-card">
+          <div class="elig-card-icon">🌏</div>
+          <h3>NRI & OCI Holders</h3>
+          <ul class="elig-list">
+            <li>Non-Resident Indians with valid Indian passport</li>
+            <li>Overseas Citizen of India (OCI) cardholders</li>
+            <li>Valid PAN card or previous Indian identity proof</li>
+            <li>International mobile number with +91 alternate</li>
+            <li>Embassy-attested identity documents accepted</li>
+          </ul>
+        </div>
+        <div class="elig-card">
+          <div class="elig-card-icon">👶</div>
+          <h3>Minors (via Guardian)</h3>
+          <ul class="elig-list">
+            <li>Children below 18 years of age</li>
+            <li>Parent or legal guardian must have an NDIS account</li>
+            <li>Birth certificate required for registration</li>
+            <li>Guardian's Aadhaar linked for verification</li>
+            <li>Account transitions to individual control at age 18</li>
+          </ul>
+        </div>
+      </div>
+      <div class="elig-note">
+        <div class="elig-note-icon">📌</div>
+        <p><strong>Required Documents:</strong> At minimum, you need one primary identity proof (Aadhaar/PAN/Passport), one address proof (utility bill/bank statement), and a recent passport-size photograph. All documents must be clear, legible scans in PDF, JPG, or PNG format (max 5MB each).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-step Guides -->
+  <section class="section" style="background:var(--snow);">
+    <div class="section-inner section-center">
+      <div class="section-tag">How It Works</div>
+      <h2>Step-by-Step Guides</h2>
+      <p class="section-desc">Follow these simple steps to register on NDIS or apply for a new identity document.</p>
+    </div>
+    <div class="section-inner">
+      <div class="guide-tabs">
+        <div class="guide-tab active" onclick="switchGuideTab('registration')">📋 Registration Guide</div>
+        <div class="guide-tab" onclick="switchGuideTab('document')">📄 Document Application Guide</div>
+      </div>
+
+      <div id="guide-registration" class="guide-content active">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="guide-step-num">1</div>
+            <h4>Visit the NDIS Portal</h4>
+            <p>Navigate to the NDIS platform and click "Get Started Free" or "Sign Up" from the navigation bar.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">2</div>
+            <h4>Create Your Account</h4>
+            <p>Fill in your personal details — full name (as per Aadhaar), email, mobile number, date of birth, and set a strong password.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">3</div>
+            <h4>Verify Your Identity (OTP)</h4>
+            <p>An OTP will be sent to your registered mobile number and email. Enter both codes to verify your identity.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">4</div>
+            <h4>Complete KYC Verification</h4>
+            <p>Upload your Aadhaar card or use Aadhaar OTP for instant eKYC. Your documents are encrypted immediately upon upload.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">5</div>
+            <h4>Access Your Identity Vault</h4>
+            <p>Once verified, your dashboard is ready. Start linking existing documents or apply for new ones from your secure vault.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="guide-document" class="guide-content">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="guide-step-num">1</div>
+            <h4>Login to Your Dashboard</h4>
+            <p>Sign in to your NDIS account using your credentials or Aadhaar OTP authentication.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">2</div>
+            <h4>Select Document Type</h4>
+            <p>Navigate to "Apply / Register" and choose the document you want — Aadhaar, PAN, Voter ID, Birth Certificate, Driving Licence, or Passport.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">3</div>
+            <h4>Fill in Personal Details</h4>
+            <p>Enter your details exactly as they appear on your existing identity proof. Select your state, enter your PIN code and mobile number.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">4</div>
+            <h4>Upload Supporting Documents</h4>
+            <p>Upload clear scans of identity proof, address proof, and a recent passport-size photograph. All files are encrypted immediately.</p>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">5</div>
+            <h4>Submit & Track Application</h4>
+            <p>Review your application summary, accept the declaration, and submit. Track real-time status from your dashboard. Processing takes 3–7 working days.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1103,6 +1542,135 @@ footer {
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" style="background:var(--mist);">
+    <div class="section-inner section-center">
+      <div class="section-tag">Frequently Asked Questions</div>
+      <h2>Got Questions?<br>We've Got Answers</h2>
+      <p class="section-desc">Find answers to common queries about the National Digital Identity System.</p>
+    </div>
+    <div class="section-inner">
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>What is the National Digital Identity System (NDIS)?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">NDIS is a centralised, government-verified platform launched by the Ministry of Electronics & Information Technology under the Digital India programme. It allows Indian citizens to securely store, manage, verify, and apply for all government-issued identity documents in one place — from Aadhaar and PAN to Passport and Driving Licence.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>Is NDIS free for all citizens?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Yes, NDIS is completely free for all Indian citizens. There are no charges for account creation, document storage, verification, or download. Some document applications (like Passport) may carry standard government processing fees as applicable.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>What documents can I store on NDIS?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">NDIS currently supports Aadhaar Card, PAN Card, Voter ID (EPIC), Birth Certificate, Driving Licence, Passport, Ration Card, and Caste Certificate. More document types are being added as the platform expands through government agency integrations.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>How secure is my data on NDIS?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">NDIS uses AES-256-GCM encryption for all documents at rest and TLS 1.3 for data in transit. The platform follows a zero-knowledge architecture — only you hold the encryption keys. All systems are ISO/IEC 27001:2022 certified and audited quarterly by CERT-In empanelled agencies. Full audit logs are maintained for every access event.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>How long does document verification take?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">For existing documents linked via Aadhaar OTP or DigiLocker, verification is instant. For new document applications, processing typically takes 3–7 working days depending on the document type and issuing authority. You can track real-time status from your dashboard.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>Can I use NDIS from my mobile phone?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Yes, NDIS is fully responsive and works on all modern mobile browsers. Additionally, a dedicated mobile app is available with biometric authentication (fingerprint/face ID) support. You can also generate time-limited QR codes for instant identity verification on the go.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>What if my document application is rejected?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">If your application is rejected, you'll receive a detailed notification explaining the reason (e.g., unclear document scan, mismatched information). You can correct the issues and resubmit at no additional cost. Our support team is available 24×7 via the toll-free helpline 1800-111-NDIS for assistance.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question"><span>How do I contact NDIS support?</span><span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">You can reach us via the 24×7 toll-free helpline at 1800-111-NDIS (6347), email at support@ndis.gov.in, or live chat available Monday–Saturday 9 AM–6 PM IST. For in-person queries, visit the NDIS Help Desk at Electronics Niketan, 6 CGO Complex, Lodhi Road, New Delhi.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News & Notifications -->
+  <section class="section" style="background:var(--white);border-top:1px solid var(--border);">
+    <div class="section-inner section-center">
+      <div class="section-tag">News & Updates</div>
+      <h2>Latest Announcements</h2>
+      <p class="section-desc">Stay informed about system updates, scheduled maintenance, and government announcements.</p>
+    </div>
+    <div class="section-inner">
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-badge news-badge-update">🔄 System Update</div>
+          <h4>NDIS v3.2 Released — Faster Document Processing</h4>
+          <p>Document verification turnaround reduced by 40% with new automated validation pipeline and enhanced OCR capabilities.</p>
+          <div class="news-date">22 April 2025</div>
+        </div>
+        <div class="news-card news-maintenance">
+          <div class="news-badge news-badge-maintenance">🔧 Scheduled Maintenance</div>
+          <h4>System Maintenance: 27 April, 2:00–6:00 AM IST</h4>
+          <p>Routine database optimisation and security patch deployment. Document download services may be temporarily unavailable.</p>
+          <div class="news-date">20 April 2025</div>
+        </div>
+        <div class="news-card news-announcement">
+          <div class="news-badge news-badge-announcement">📢 Government Announcement</div>
+          <h4>NDIS Now Mandatory for Central Govt Scholarship Applications</h4>
+          <p>Starting July 2025, all central government scholarship applications will require NDIS-verified identity. Register now to avoid last-minute delays.</p>
+          <div class="news-date">18 April 2025</div>
+        </div>
+        <div class="news-card">
+          <div class="news-badge news-badge-update">🔄 System Update</div>
+          <h4>DigiLocker Auto-Sync Now Available Nationwide</h4>
+          <p>Citizens can now automatically sync verified documents from DigiLocker to their NDIS vault with one-click authorisation.</p>
+          <div class="news-date">15 April 2025</div>
+        </div>
+        <div class="news-card news-maintenance">
+          <div class="news-badge news-badge-maintenance">🔧 Scheduled Maintenance</div>
+          <h4>Mobile App Update v2.5 — Biometric Enhancements</h4>
+          <p>Updated fingerprint and face recognition algorithms for faster, more accurate authentication. Please update your app.</p>
+          <div class="news-date">12 April 2025</div>
+        </div>
+        <div class="news-card news-announcement">
+          <div class="news-badge news-badge-announcement">📢 Government Announcement</div>
+          <h4>SAARC Cross-Border Verification Protocol Launched</h4>
+          <p>NDIS identity verification is now accepted across 5 SAARC nations for simplified border processing and visa applications.</p>
+          <div class="news-date">8 April 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Articles -->
+  <div class="cta-band" style="padding-bottom:2rem;">
+    <div class="cta-band-inner" style="max-width:1260px;">
+      <div class="section-tag" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);">Help & Resources</div>
+      <h2 style="color:var(--white);font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:0.5rem;">Helpful Articles & Guides</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:0;">Browse our knowledge base for detailed guidance.</p>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="help-card-icon">🚀</div>
+          <h4>Getting Started Guide</h4>
+          <p>Complete walkthrough for new users — from account creation to your first document upload.</p>
+          <a class="help-card-link" onclick="showPage('about')">Read Article →</a>
+        </div>
+        <div class="help-card">
+          <div class="help-card-icon">🔍</div>
+          <h4>Document Verification FAQ</h4>
+          <p>Understanding the verification process, timelines, and what to do if verification fails.</p>
+          <a class="help-card-link" href="#">Read Article →</a>
+        </div>
+        <div class="help-card">
+          <div class="help-card-icon">🔒</div>
+          <h4>Security Best Practices</h4>
+          <p>How to keep your NDIS account secure — 2FA setup, password tips, and session management.</p>
+          <a class="help-card-link" href="#">Read Article →</a>
+        </div>
+        <div class="help-card">
+          <div class="help-card-icon">🛠️</div>
+          <h4>Troubleshooting Issues</h4>
+          <p>Fixing common problems — upload failures, OTP not received, login issues, and more.</p>
+          <a class="help-card-link" onclick="showPage('contact')">Read Article →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <div class="cta-band">
     <div class="cta-band-inner">
@@ -1151,35 +1719,60 @@ footer {
     </div>
   </div>
   <div class="about-body">
+    <!-- 1. System Overview -->
     <div class="about-block">
-      <div class="about-block-label">Overview</div>
+      <div class="about-block-label">System Overview</div>
       <h2>What is NDIS?</h2>
       <p>The National Digital Identity System (NDIS) is a flagship initiative of the Ministry of Electronics and Information Technology (MeitY), launched under the Digital India programme. It provides every Indian citizen with a secure, unified digital identity vault — a single platform to store, manage, verify, and apply for all government-issued identity documents.</p>
       <p>By eliminating the need to carry physical documents and visit government offices, NDIS empowers citizens with instant access to their official identities — from Aadhaar and PAN to Passport and Driving Licence — with the highest standards of data security and privacy.</p>
     </div>
+
+    <!-- 2. Mission and Vision -->
     <div class="about-block">
       <div class="about-block-label">Mission & Vision</div>
       <h2>Our Purpose</h2>
       <div class="pillars-grid">
         <div class="pillar"><div class="pillar-icon">🎯</div><h4>Mission</h4><p>Digitise, secure, and simplify access to government-issued identity for every Indian citizen.</p></div>
         <div class="pillar"><div class="pillar-icon">🌐</div><h4>Vision</h4><p>A paperless India where every citizen's identity is verified, accessible, and sovereign.</p></div>
-        <div class="pillar"><div class="pillar-icon">🤝</div><h4>Commitment</h4><p>Zero fraud, zero data leak — citizen data sovereignty above all else.</p></div>
-        <div class="pillar"><div class="pillar-icon">⚡</div><h4>Goal</h4><p>Reduce document turnaround time from weeks to minutes through digitisation.</p></div>
+      
+    </div>
+    </div>
+
+    <!-- 3. Government Digital Transformation Goals -->
+    <div class="about-block">
+      <div class="about-block-label">Transformation Goals</div>
+      <h2>Government Digital Transformation Goals</h2>
+      <div class="pillars-grid">
+        <div class="pillar"><div class="pillar-icon">📄</div><h4>100% Paperless</h4><p>Transition all document verification to digital platforms by 2030, eliminating physical paper trails.</p></div>
+        <div class="pillar"><div class="pillar-icon">🇮🇳</div><h4>National Integration</h4><p>Seamlessly integrate identity services across all 36 States and Union Territories.</p></div>
+        <div class="pillar"><div class="pillar-icon">💸</div><h4>Financial Inclusion</h4><p>Enable instant, fraud-free eKYC to accelerate banking and welfare distribution to the last mile.</p></div>
+        <div class="pillar"><div class="pillar-icon">🛡️</div><h4>Zero Fraud</h4><p>Eradicate identity theft and duplication in government subsidies and public distribution systems.</p></div>
       </div>
     </div>
+
+    <!-- 4. Security and Privacy Commitment -->
     <div class="about-block">
-      <div class="about-block-label">Security & Compliance</div>
-      <h2>How We Protect Your Data</h2>
-      <p>NDIS operates under the Digital Personal Data Protection Act 2023, Aadhaar Act 2016, and the IT Act 2000. All systems are certified under ISO/IEC 27001:2022 and audited quarterly by CERT-In empanelled agencies.</p>
-      <p>Documents are encrypted with AES-256-GCM at rest and TLS 1.3 in transit. Our zero-knowledge architecture ensures that only you hold the keys to your data — government administrators cannot view your unencrypted files. All access events are immutably logged for full auditability.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem">
-        <div class="status-pill status-active">✓ ISO 27001 Certified</div>
+      <div class="about-block-label">Security & Privacy</div>
+      <h2>Security and Privacy Commitment</h2>
+      <p>We believe that citizen data sovereignty is non-negotiable. NDIS is built on a "Privacy by Design" framework. Our zero-knowledge architecture ensures that only you hold the encryption keys to your data — government administrators cannot view your unencrypted files.</p>
+      <p>Documents are encrypted with AES-256-GCM at rest and secured with TLS 1.3 in transit. All platform access is protected by multi-factor authentication, including mandatory biometric (fingerprint/face) validation for sensitive actions. Every interaction with your identity vault generates an immutable audit log, providing complete transparency into when and how your data is accessed.</p>
+    </div>
+
+    <!-- 5. Legal and Compliance Information -->
+    <div class="about-block">
+      <div class="about-block-label">Legal & Compliance</div>
+      <h2>Legal and Compliance Information</h2>
+      <p>NDIS operates strictly within the legal framework established by the Government of India. The platform is governed by the <strong>Digital Personal Data Protection Act (DPDP) 2023</strong>, ensuring your rights as a data principal are fully upheld. It also complies with the <strong>Aadhaar Act 2016</strong> and the <strong>Information Technology Act 2000</strong>.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1.5rem">
+        <div class="status-pill status-active">✓ ISO/IEC 27001:2022 Certified</div>
         <div class="status-pill status-active">✓ DPDP Act 2023 Compliant</div>
-        <div class="status-pill status-active">✓ CERT-In Audited</div>
+        <div class="status-pill status-active">✓ CERT-In Audited Quarterly</div>
         <div class="status-pill status-active">✓ MeitY Approved</div>
         <div class="status-pill status-active">✓ UIDAI Integrated</div>
       </div>
     </div>
+
+    <!-- Milestones (Retained) -->
     <div class="about-block">
       <div class="about-block-label">Milestones</div>
       <h2>Platform Journey</h2>
@@ -1191,6 +1784,7 @@ footer {
         <div class="tl-item"><div class="tl-dot">25</div><div class="tl-text"><h4>140M Citizens — 2025</h4><p>Reached 140 million registered users. Cross-border SAARC verification protocol initiated.</p></div></div>
       </div>
     </div>
+
     <div style="text-align:center;margin-top:2rem;padding-bottom:2rem">
       <button class="btn btn-primary btn-lg" onclick="showPage('signup')">Join NDIS Today</button>
     </div>
@@ -1199,7 +1793,110 @@ footer {
     <div class="footer-inner">
       <div><div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:0.6rem">🪪 NDIS</div><p>National Digital Identity System — a Ministry of Electronics and Information Technology initiative.</p></div>
       <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
-      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Use</a><a>RTI Act</a></div>
+      <div class="footer-col"><h4>Legal</h4><a onclick="showPage('terms')">Terms and Conditions</a><a>Privacy Policy</a><a>RTI Act</a></div>
+      <div class="footer-col"><h4>Ministry</h4><a>MeitY</a><a>Digital India</a><a>data.gov.in</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 National Digital Identity System · Government of India</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: TERMS AND CONDITIONS
+════════════════════════════════════════════ -->
+<div id="page-terms" class="page">
+  <div class="page-banner">
+    <div class="page-banner-inner">
+      <div class="page-banner-label">Legal Information</div>
+      <h1>Terms and Conditions</h1>
+      <p>National Digital Identity System (NDIS) — Effective Date: April 2026</p>
+    </div>
+  </div>
+  <div class="about-body">
+    <div class="about-block">
+      <p>Welcome to the National Digital Identity System (NDIS). These Terms and Conditions govern your access to and use of our digital identity services, platform, and related applications. By using this system, you agree to comply with these terms. If you do not agree, please discontinue use of the service immediately.</p>
+    </div>
+    
+    <div class="about-block">
+      <div class="about-block-label">Section 1</div>
+      <h2>1. Purpose of the Service</h2>
+      <p>The National Digital Identity System provides a secure platform for:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1rem;color:var(--sub)">
+        <li>Digital identity registration and verification</li>
+        <li>Document submission and management</li>
+        <li>Biometric authentication (where applicable)</li>
+        <li>Access to government and authorized services</li>
+      </ul>
+      <p>The system is intended to support safe, efficient, and reliable identity management.</p>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-label">Section 2</div>
+      <h2>2. User Eligibility</h2>
+      <p>To use this platform, you must:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1rem;color:var(--sub)">
+        <li>Provide accurate and complete personal information</li>
+        <li>Be authorized to create or manage a digital identity</li>
+        <li>Use the system in accordance with applicable laws</li>
+        <li>Maintain the confidentiality of your login credentials</li>
+      </ul>
+      <p>Users are responsible for ensuring that their information remains current and correct.</p>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-label">Section 3</div>
+      <h2>3. Account Security</h2>
+      <p>You are responsible for safeguarding your account credentials. You agree to:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1rem;color:var(--sub)">
+        <li>Use a strong password</li>
+        <li>Keep your login details confidential</li>
+        <li>Log out after using shared or public devices</li>
+        <li>Report unauthorized access immediately</li>
+      </ul>
+      <p>The system is not responsible for losses caused by failure to protect your account information.</p>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-label">Section 4</div>
+      <h2>4. Data Collection and Privacy</h2>
+      <p>To provide services, the system may collect and process:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1rem;color:var(--sub)">
+        <li>Personal identification information</li>
+        <li>Contact details</li>
+        <li>Biometric data (if enabled)</li>
+        <li>Uploaded documents and verification records</li>
+      </ul>
+      <p>We are committed to secure data storage, encryption of sensitive information, controlled access to authorized personnel, and compliance with data protection standards. Your data will be used only for identity verification, system operations, and authorized services.</p>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-label">Section 5</div>
+      <h2>5. Acceptable Use</h2>
+      <p>Users must use the system responsibly and lawfully. You must NOT:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1rem;color:var(--sub)">
+        <li>Provide false or misleading information</li>
+        <li>Attempt to gain unauthorized system access</li>
+        <li>Upload malicious software or harmful content</li>
+        <li>Interfere with system performance or security</li>
+        <li>Use the platform for illegal or fraudulent activities</li>
+      </ul>
+      <p>Violation of these rules may result in account suspension or legal action.</p>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-label">Section 6-14</div>
+      <h2>Additional Terms</h2>
+      <p><strong>6. Identity Verification and Approval:</strong> All submitted information and documents are subject to verification. The system reserves the right to approve or reject applications, request additional documentation, delay processing for security review, or suspend suspicious applications.</p>
+      <p><strong>7. System Availability:</strong> We strive to maintain reliable service availability. However, scheduled maintenance, technical issues, or system updates may temporarily interrupt services. We will make reasonable efforts to notify users in advance.</p>
+      <p><strong>8. Notifications:</strong> By using this system, you agree to receive notifications related to enrollment status updates, verification results, security alerts, and system maintenance announcements via website dashboard, email, or SMS.</p>
+      <p><strong>10. Limitation of Liability:</strong> The National Digital Identity System is not liable for user-provided incorrect information, unauthorized access caused by weak passwords, service interruptions, or losses resulting from misuse.</p>
+      <p><strong>14. Contact and Support:</strong> For assistance, questions, or reporting issues, contact the System Support Team at support@ndis.gov or +91-18001116347.</p>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div><div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:0.6rem">🪪 NDIS</div><p>National Digital Identity System — a Ministry of Electronics and Information Technology initiative.</p></div>
+      <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a onclick="showPage('terms')">Terms and Conditions</a><a>Privacy Policy</a><a>RTI Act</a></div>
       <div class="footer-col"><h4>Ministry</h4><a>MeitY</a><a>Digital India</a><a>data.gov.in</a></div>
     </div>
     <div class="footer-bottom"><p>© 2025 National Digital Identity System · Government of India</p></div>
@@ -1212,13 +1909,13 @@ footer {
 <div id="page-login" class="page">
   <div class="auth-layout">
     <div class="auth-visual">
-      <div class="auth-visual-inner">
+      <div class="auth-visual-inner" style="text-align:center;margin:0 auto">
         <h2>Welcome back to your Identity Vault</h2>
         <p>Sign in securely to access all your government-issued documents in one place.</p>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🔐</div><span>Two-factor authentication available</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📱</div><span>Login with Aadhaar OTP</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🛡️</div><span>Session encrypted end-to-end</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📋</div><span>Full activity audit log</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">🔐</div><span>Two-factor authentication available</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">📱</div><span>Login with Aadhaar OTP</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">🛡️</div><span>Session encrypted end-to-end</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">📋</div><span>Full activity audit log</span></div>
       </div>
     </div>
     <div class="auth-form-panel">
@@ -1234,15 +1931,15 @@ footer {
       <div class="form-group">
         <label class="form-label">Email Address or Mobile Number <span>*</span></label>
         <input class="form-input" id="login-id" type="text" placeholder="email@example.com or 98765XXXXX" autocomplete="username">
-        <div class="form-error">Please enter your email or mobile number</div>
+        <div class="form-error" id="login-id-error">Please enter your email or mobile number</div>
       </div>
       <div class="form-group">
         <label class="form-label">Password <span>*</span></label>
         <input class="form-input" id="login-pw" type="password" placeholder="••••••••" autocomplete="current-password">
-        <div class="form-error">Please enter your password</div>
+        <div class="form-error" id="login-pw-error">Please enter your password</div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
-        <label class="checkbox-row" style="margin-bottom:0"><input type="checkbox"> <label style="font-size:13px;color:var(--sub)">Remember me</label></label>
+        <label class="checkbox-row" style="margin-bottom:0"><input type="checkbox" id="login-remember"> <label for="login-remember" style="font-size:13px;color:var(--sub);cursor:pointer">Remember me</label></label>
         <a style="font-size:13px;color:var(--sky);font-weight:600;cursor:pointer">Forgot Password?</a>
       </div>
       <button class="btn btn-primary btn-full btn-lg" onclick="doLogin()">🔐 Login Securely</button>
@@ -1254,18 +1951,53 @@ footer {
 </div>
 
 <!-- ════════════════════════════════════════════
+     PAGE: ADMIN LOGIN
+════════════════════════════════════════════ -->
+<div id="page-admin-login" class="page">
+  <div class="auth-layout">
+    <div class="auth-visual" style="background:var(--navy)">
+      <div class="auth-visual-inner" style="text-align:center;margin:0 auto">
+        <h2>Secure Officer Authentication</h2>
+        <p>Restricted access. Authorized personnel only.</p>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">🛡️</div><span>Level-3 Encrypted Connection</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">👀</div><span>Activity is Monitored</span></div>
+      </div>
+    </div>
+    <div class="auth-form-panel">
+      <div class="auth-form-logo">
+        <div class="auth-form-logo-mark" style="background:var(--danger)">🔒</div>
+        <div class="auth-form-logo-name">NDIS Back-Office</div>
+      </div>
+      <h2 class="auth-form-title">Officer Login</h2>
+      <p class="auth-form-sub">Enter your official credentials.</p>
+
+      <div class="form-group">
+        <label class="form-label">Officer ID <span>*</span></label>
+        <input class="form-input" id="admin-login-id" type="text" placeholder="OFF-XXXX">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Master Password <span>*</span></label>
+        <input class="form-input" id="admin-login-pw" type="password" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary btn-full btn-lg" style="background:var(--navy);border-color:var(--navy)" onclick="adminLogin()">Authenticate</button>
+      <div class="auth-footer-link"><a onclick="showPage('home')">← Return to Citizen Portal</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
      PAGE: SIGNUP
 ════════════════════════════════════════════ -->
 <div id="page-signup" class="page">
   <div class="auth-layout">
     <div class="auth-visual">
-      <div class="auth-visual-inner">
+      <div class="auth-visual-inner" style="text-align:center;margin:0 auto">
         <h2>Create Your Digital Identity Account</h2>
         <p>Register once, access all your government identity documents forever — securely and freely.</p>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🆓</div><span>Free for all Indian citizens</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">⚡</div><span>Instant document access after KYC</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">🔒</div><span>Zero-knowledge data architecture</span></div>
-        <div class="auth-visual-feature"><div class="auth-visual-feature-icon">📧</div><span>SMS + Email verification</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">🆓</div><span>Free for all Indian citizens</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">⚡</div><span>Instant document access after KYC</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">🔒</div><span>Zero-knowledge data architecture</span></div>
+        <div class="auth-visual-feature" style="justify-content:center"><div class="auth-visual-feature-icon">📧</div><span>SMS + Email verification</span></div>
       </div>
     </div>
     <div class="auth-form-panel">
@@ -1273,63 +2005,155 @@ footer {
         <div class="auth-form-logo-mark">🪪</div>
         <div class="auth-form-logo-name">NDIS Portal</div>
       </div>
-      <h2 class="auth-form-title">Create Account</h2>
-      <p class="auth-form-sub">Fill in your details to register as a citizen.</p>
-
-      <div class="form-group">
-        <label class="form-label">Full Name (as per Aadhaar) <span>*</span></label>
-        <input class="form-input" id="su-name" type="text" placeholder="Enter your full legal name">
+      
+      <!-- Wizard Progress -->
+      <div id="signup-progress" style="display:flex;gap:4px;margin-bottom:1.5rem">
+        <div id="su-prog-1" style="flex:1;height:4px;background:var(--navy);border-radius:2px"></div>
+        <div id="su-prog-2" style="flex:1;height:4px;background:var(--border);border-radius:2px"></div>
+        <div id="su-prog-3" style="flex:1;height:4px;background:var(--border);border-radius:2px"></div>
       </div>
-      <div class="form-row">
+
+      <!-- STEP 1: DEMOGRAPHICS -->
+      <div id="signup-step-1">
+        <h2 class="auth-form-title">Step 1: Account Details</h2>
+        <p class="auth-form-sub">Enter your basic demographic and contact information.</p>
+
+        <div class="form-group">
+          <label class="form-label">Full Name <span>*</span></label>
+          <input class="form-input" id="su-name" type="text" placeholder="As per official documents">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date of Birth <span>*</span></label>
+            <input class="form-input" id="su-dob" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender <span>*</span></label>
+            <select class="form-select form-input" id="su-gender">
+              <option value="">— Select —</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Transgender</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nationality <span>*</span></label>
+            <select class="form-select form-input" id="su-nation">
+              <option value="Indian">Indian Citizen</option>
+              <option value="NRI">NRI / OCI</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile Number <span>*</span></label>
+            <input class="form-input" id="su-mobile" type="tel" placeholder="+91 XXXXX XXXXX">
+          </div>
+        </div>
         <div class="form-group">
           <label class="form-label">Email Address <span>*</span></label>
           <input class="form-input" id="su-email" type="email" placeholder="you@example.com">
         </div>
         <div class="form-group">
-          <label class="form-label">Mobile Number <span>*</span></label>
-          <input class="form-input" id="su-mobile" type="tel" placeholder="+91 XXXXX XXXXX">
+          <label class="form-label">Permanent Address <span>*</span></label>
+          <input class="form-input" id="su-addr" type="text" placeholder="House No., Street, City, PIN Code">
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Date of Birth <span>*</span></label>
-          <input class="form-input" id="su-dob" type="date">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Gender <span>*</span></label>
-          <select class="form-select form-input" id="su-gender">
-            <option value="">— Select —</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-            <option>Prefer not to say</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Address <span>*</span></label>
-        <input class="form-input" id="su-addr" type="text" placeholder="House No., Street, City, PIN Code">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Password <span>*</span></label>
-          <input class="form-input" id="su-pw" type="password" placeholder="Min. 8 characters" oninput="checkPwStrength(this.value)">
-          <div class="pw-strength">
-            <div class="pw-strength-bar"><span id="pw-s1"></span><span id="pw-s2"></span><span id="pw-s3"></span><span id="pw-s4"></span></div>
-            <div class="pw-strength-label" id="pw-label">Enter a password</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Password <span>*</span></label>
+            <input class="form-input" id="su-pw" type="password" placeholder="Min. 8 characters" oninput="checkPwStrength(this.value)">
+            <div class="pw-strength">
+              <div class="pw-strength-bar"><span id="pw-s1"></span><span id="pw-s2"></span><span id="pw-s3"></span><span id="pw-s4"></span></div>
+              <div class="pw-strength-label" id="pw-label">Enter a password</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span>*</span></label>
+            <input class="form-input" id="su-pw2" type="password" placeholder="Re-enter password">
           </div>
         </div>
+        
+        <button class="btn btn-primary btn-full btn-lg" onclick="nextSignupStep(2)" style="margin-top:1rem">Continue to Identity Verification →</button>
+        <div class="auth-footer-link">Already registered? <a onclick="showPage('login')">Login →</a></div>
+      </div>
+
+      <!-- STEP 2: IDENTITY VERIFICATION -->
+      <div id="signup-step-2" class="hidden">
+        <h2 class="auth-form-title">Step 2: Identity Verification</h2>
+        <p class="auth-form-sub">Provide proof of identity to activate your digital vault.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Primary ID Type <span>*</span></label>
+            <select class="form-select form-input" id="su-id-type">
+              <option value="Aadhaar">Aadhaar Card</option>
+              <option value="PAN">PAN Card</option>
+              <option value="Voter">Voter ID</option>
+              <option value="Passport">Passport</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ID Number <span>*</span></label>
+            <input class="form-input" id="su-id-num" type="text" placeholder="Enter ID Number">
+          </div>
+        </div>
+        
         <div class="form-group">
-          <label class="form-label">Confirm Password <span>*</span></label>
-          <input class="form-input" id="su-pw2" type="password" placeholder="Re-enter password">
+          <label class="form-label">Upload ID Document (PDF/JPG) <span>*</span></label>
+          <div class="doc-upload-box" style="border:2px dashed var(--border);border-radius:var(--r-md);padding:2rem;text-align:center;background:var(--mist);cursor:pointer;transition:all 0.2s" onclick="showToast('success','📎','File Selected','Document mock uploaded.')">
+            <div style="font-size:2rem;margin-bottom:0.5rem">📄</div>
+            <div style="font-weight:600;color:var(--navy);font-size:14px">Click to browse or drag file here</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:0.3rem">Max size: 5MB</div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:1.5rem">
+          <label class="form-label">Biometric Verification (Optional)</label>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1rem;border:1px solid var(--border);border-radius:var(--r-md);background:var(--white)">
+            <div style="font-size:1.8rem;color:var(--navy)">👁️</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:600;color:var(--ink)">Capture Face / Iris</div>
+              <div style="font-size:11px;color:var(--muted)">Speeds up verification process</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="showToast('success','📸','Biometrics Captured','Face/Iris scan successful.')">Start Scan</button>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:1.5rem">
+          <label class="form-label">In-Person Appointment (Optional)</label>
+          <label class="checkbox-row" style="margin-bottom:0.5rem">
+            <input type="checkbox" id="su-appt-check" onchange="document.getElementById('su-appt-date').classList.toggle('hidden', !this.checked)">
+            <label for="su-appt-check">I prefer physical verification at an NDIS Center</label>
+          </label>
+          <input type="datetime-local" id="su-appt-date" class="form-input hidden" style="margin-top:0.5rem">
+        </div>
+
+        <div class="checkbox-row" style="margin:1.5rem 0">
+          <input type="checkbox" id="su-terms">
+          <label for="su-terms">I agree to the Terms of Use and authorise UIDAI/NDIS to verify my identity via OTP/Biometrics.</label>
+        </div>
+
+        <div style="display:flex;gap:1rem;margin-top:1rem">
+          <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="nextSignupStep(1)">← Back</button>
+          <button class="btn btn-primary" style="flex:2;justify-content:center" onclick="submitSignup()">Verify & Create Account</button>
         </div>
       </div>
-      <div class="checkbox-row" style="margin-bottom:1.5rem">
-        <input type="checkbox" id="su-terms">
-        <label for="su-terms">I agree to the <a onclick="">Terms of Use</a>, <a onclick="">Privacy Policy</a>, and authorise NDIS to verify my identity through UIDAI.</label>
+
+      <!-- STEP 3: SUCCESS & ID GENERATION -->
+      <div id="signup-step-3" class="hidden" style="text-align:center;padding:2rem 0">
+        <div style="width:80px;height:80px;background:var(--success);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.5rem;box-shadow:0 8px 24px rgba(34,197,94,0.3)">✓</div>
+        <h2 class="auth-form-title">Verification Successful</h2>
+        <p class="auth-form-sub" style="margin-bottom:2rem">Your digital identity vault has been created. Here is your automatically generated unique NDIS ID:</p>
+        
+        <div style="background:var(--mist);border:2px dashed var(--navy);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:2rem">
+          <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem">Your NDIS ID</div>
+          <div id="generated-ndis-id" style="font-family:'IBM Plex Serif',serif;font-size:1.8rem;font-weight:700;color:var(--navy);letter-spacing:0.05em">NDIS-Generating...</div>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" onclick="doLogin()">Go to My Dashboard →</button>
       </div>
-      <button class="btn btn-primary btn-full btn-lg" onclick="doSignup()">Create My Account →</button>
-      <div class="auth-footer-link">Already registered? <a onclick="showPage('login')">Login →</a></div>
+
     </div>
   </div>
 </div>
@@ -1351,10 +2175,11 @@ footer {
       <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1rem">
         <h3 style="font-size:1rem;margin-bottom:1rem">Application Steps</h3>
         <ul class="reg-step-list">
-          <li class="reg-step active" id="rstep-1"><div class="reg-step-num">1</div><div class="reg-step-label">Select Document</div></li>
-          <li class="reg-step" id="rstep-2"><div class="reg-step-num">2</div><div class="reg-step-label">Personal Details</div></li>
-          <li class="reg-step" id="rstep-3"><div class="reg-step-num">3</div><div class="reg-step-label">Upload Proofs</div></li>
-          <li class="reg-step" id="rstep-4"><div class="reg-step-num">4</div><div class="reg-step-label">Review & Submit</div></li>
+          <li class="reg-step active" id="rstep-1"><div class="reg-step-num">1</div><div class="reg-step-label">Personal Details</div></li>
+          <li class="reg-step" id="rstep-2"><div class="reg-step-num">2</div><div class="reg-step-label">Address Details</div></li>
+          <li class="reg-step" id="rstep-3"><div class="reg-step-num">3</div><div class="reg-step-label">Upload Documents</div></li>
+          <li class="reg-step" id="rstep-4"><div class="reg-step-num">4</div><div class="reg-step-label">Fee Payment</div></li>
+          <li class="reg-step" id="rstep-5"><div class="reg-step-num">5</div><div class="reg-step-label">Review & Submit</div></li>
         </ul>
       </div>
       <div style="background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.2rem;font-size:13px">
@@ -1369,102 +2194,182 @@ footer {
     </aside>
     <!-- main form -->
     <div>
-      <!-- Step 1: Select doc -->
+      <!-- Step 1: Personal Details -->
       <div id="reg-step-1" class="form-card">
-        <h3 class="form-card-title">Select Document Type</h3>
-        <p class="form-card-sub">Choose the document you wish to apply for or register on your NDIS account.</p>
-        <div class="doc-type-grid">
-          <div class="doc-type-card" onclick="selectDocType(this,'Aadhaar Card')"><div class="icon">🪪</div><h4>Aadhaar Card</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Voter ID')"><div class="icon">🗳️</div><h4>Voter ID Card</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'PAN Card')"><div class="icon">💳</div><h4>PAN Card</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Birth Certificate')"><div class="icon">📜</div><h4>Birth Certificate</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Driving Licence')"><div class="icon">🚗</div><h4>Driving Licence</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Passport')"><div class="icon">🛂</div><h4>Passport</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Ration Card')"><div class="icon">🏘️</div><h4>Ration Card</h4></div>
-          <div class="doc-type-card" onclick="selectDocType(this,'Caste Certificate')"><div class="icon">📋</div><h4>Caste Certificate</h4></div>
+        <h3 class="form-card-title">Step 1: Document & Personal Details</h3>
+        <p class="form-card-sub">Select the document you are applying for and enter your personal information.</p>
+        
+        <div class="form-group" style="margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)">
+          <label class="form-label" style="font-size:14px;color:var(--navy)">Applying For <span>*</span></label>
+          <select class="form-select form-input" id="app-doc-type" style="font-size:15px;padding:0.8rem">
+            <option value="">— Select Document Type —</option>
+            <option value="Aadhaar Card">New Aadhaar Card Registration</option>
+            <option value="PAN Card">New PAN Card Application</option>
+            <option value="Voter ID">Voter ID (Form 6)</option>
+            <option value="Birth Certificate">Birth Certificate</option>
+            <option value="Driving Licence">Learner / Driving Licence</option>
+            <option value="Passport">Passport Application</option>
+          </select>
         </div>
-        <button class="btn btn-primary" onclick="nextRegStep(2)" id="reg-next-1" disabled>Continue to Personal Details →</button>
-      </div>
 
-      <!-- Step 2: Personal details -->
-      <div id="reg-step-2" class="form-card hidden">
-        <h3 class="form-card-title">Personal Details</h3>
-        <p class="form-card-sub">Enter your details exactly as they appear on your existing identity proof.</p>
+      
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input class="form-input" type="text" placeholder="As per Aadhaar Card"></div>
+          <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input class="form-input" type="text" placeholder="First, Middle, Last Name"></div>
           <div class="form-group"><label class="form-label">Date of Birth <span>*</span></label><input class="form-input" type="date"></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Father's / Spouse's Name <span>*</span></label><input class="form-input" type="text" placeholder="Full name"></div>
-          <div class="form-group"><label class="form-label">Gender <span>*</span></label><select class="form-select form-input"><option value="">— Select —</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Gender <span>*</span></label><select class="form-select form-input"><option value="">— Select —</option><option>Male</option><option>Female</option><option>Transgender</option></select></div>
+          <div class="form-group"><label class="form-label">Nationality <span>*</span></label><select class="form-select form-input"><option>Indian</option><option>NRI/OCI</option></select></div>
         </div>
-        <div class="form-group"><label class="form-label">Residential Address <span>*</span></label><textarea class="form-textarea" placeholder="Full address with PIN code"></textarea></div>
+        <div class="form-group"><label class="form-label">Father's / Mother's / Spouse's Name <span>*</span></label><input class="form-input" type="text" placeholder="Full name of guardian/spouse"></div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">State <span>*</span></label><select class="form-select form-input"><option value="">— Select State —</option><option>West Bengal</option><option>Maharashtra</option><option>Karnataka</option><option>Tamil Nadu</option><option>Uttar Pradesh</option><option>Gujarat</option><option>Rajasthan</option><option>Delhi</option><option>Bihar</option><option>Odisha</option></select></div>
-          <div class="form-group"><label class="form-label">PIN Code <span>*</span></label><input class="form-input" type="text" placeholder="6-digit PIN"></div>
+          <div class="form-group"><label class="form-label">Mobile Number <span>*</span></label><input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX"></div>
+          <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@example.com"></div>
         </div>
-        <div class="form-group"><label class="form-label">Mobile Number <span>*</span></label><input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX"><div class="form-hint">OTP will be sent to this number for verification.</div></div>
-        <div style="display:flex;gap:1rem;margin-top:0.5rem">
+        
+        <button class="btn btn-primary" onclick="nextRegStep(2)" style="margin-top:1rem">Save & Continue to Address →</button>
+      </div>
+
+      <!-- Step 2: Address Details -->
+      <div id="reg-step-2" class="form-card hidden">
+        <h3 class="form-card-title">Step 2: Address Details</h3>
+        <p class="form-card-sub">Provide your current and permanent residential address.</p>
+        
+        <h4 style="font-size:14px;color:var(--navy);margin-bottom:1rem">Current Address</h4>
+        <div class="form-group"><label class="form-label">House No., Building, Street, Area <span>*</span></label><textarea class="form-textarea" style="min-height:80px" placeholder="Full street address"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">City / Village <span>*</span></label><input class="form-input" type="text" placeholder="City or Village name"></div>
+          <div class="form-group"><label class="form-label">District <span>*</span></label><input class="form-input" type="text" placeholder="District name"></div>
+        </div>
+        <div class="form-row" style="margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)">
+          <div class="form-group"><label class="form-label">State <span>*</span></label><select class="form-select form-input"><option value="">— Select State —</option><option>Maharashtra</option><option>Delhi</option><option>Karnataka</option><option>West Bengal</option><option>Tamil Nadu</option></select></div>
+          <div class="form-group"><label class="form-label">PIN Code <span>*</span></label><input class="form-input" type="text" placeholder="6-digit PIN code"></div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <h4 style="font-size:14px;color:var(--navy);margin:0">Permanent Address</h4>
+          <label class="checkbox-row" style="margin:0"><input type="checkbox" checked onchange="showToast('success','🏠','Address Copied','Permanent address is set as same as current address.')"> <label>Same as Current Address</label></label>
+        </div>
+        <div style="background:var(--mist);padding:1rem;border-radius:var(--r-md);border:1px solid var(--border);color:var(--muted);font-size:13px;margin-bottom:1.5rem">
+          Permanent address fields are hidden as they are the same as your current address. Uncheck the box above to enter a different permanent address.
+        </div>
+
+        <div style="display:flex;gap:1rem">
           <button class="btn btn-secondary" onclick="nextRegStep(1)">← Back</button>
-          <button class="btn btn-primary" onclick="nextRegStep(3)">Continue to Upload →</button>
+          <button class="btn btn-primary" onclick="nextRegStep(3)">Save & Continue to Documents →</button>
         </div>
       </div>
 
-      <!-- Step 3: Upload -->
+      <!-- Step 3: Document Upload -->
       <div id="reg-step-3" class="form-card hidden">
-        <h3 class="form-card-title">Upload Supporting Documents</h3>
-        <p class="form-card-sub">Upload clear scans or photographs. All files are encrypted immediately upon upload.</p>
-        <div class="form-group">
-          <label class="form-label">Identity Proof <span>*</span></label>
-          <div class="upload-zone" onclick="fakeUpload('id-proof-name','ID Proof uploaded')">
-            <div class="upload-zone-icon">📄</div>
-            <p><strong>Click to upload</strong> or drag and drop</p>
-            <p style="margin-top:4px">Aadhaar / PAN / Passport · PDF, JPG, PNG · Max 5MB</p>
-            <p id="id-proof-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+        <h3 class="form-card-title">Step 3: Document Upload Module</h3>
+        <p class="form-card-sub">Upload high-quality scans of your documents. Allowed formats: PDF, JPG, PNG.</p>
+        
+        <div style="display:grid;gap:1.2rem">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">1. Identity Proof (Aadhaar/PAN/Voter ID) <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('uid-proof','Identity Proof verified')">
+              <div class="upload-zone-icon">🪪</div><p><strong>Click to upload</strong> Identity Proof</p><p id="uid-proof" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">2. Proof of Address (Utility Bill/Passport) <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('uaddr-proof','Address Proof verified')">
+              <div class="upload-zone-icon">🏠</div><p><strong>Click to upload</strong> Address Proof</p><p id="uaddr-proof" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">3. Birth Certificate (Age Proof) <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('ubirth-proof','Birth Certificate verified')">
+              <div class="upload-zone-icon">📜</div><p><strong>Click to upload</strong> Birth Certificate</p><p id="ubirth-proof" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">4. Education Certificates (Optional)</label>
+            <div class="upload-zone" onclick="fakeUpload('uedu-proof','Education Certificate verified')">
+              <div class="upload-zone-icon">🎓</div><p><strong>Click to upload</strong> 10th/12th passing certificate</p><p id="uedu-proof" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">5. Recent Photograph <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('uphoto-proof','Photograph verified')">
+              <div class="upload-zone-icon">🤳</div><p><strong>Click to upload</strong> Passport size photo</p><p id="uphoto-proof" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Address Proof <span>*</span></label>
-          <div class="upload-zone" onclick="fakeUpload('addr-proof-name','Address Proof uploaded')">
-            <div class="upload-zone-icon">🏠</div>
-            <p><strong>Click to upload</strong> or drag and drop</p>
-            <p style="margin-top:4px">Utility bill / Bank statement / Aadhaar · Max 5MB</p>
-            <p id="addr-proof-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Recent Photograph <span>*</span></label>
-          <div class="upload-zone" onclick="fakeUpload('photo-name','Photograph uploaded')">
-            <div class="upload-zone-icon">🤳</div>
-            <p><strong>Click to upload</strong> your recent passport-size photograph</p>
-            <p style="margin-top:4px">JPG, PNG · Max 2MB · White background preferred</p>
-            <p id="photo-name" style="margin-top:8px;color:var(--success);font-weight:600;font-size:12px"></p>
-          </div>
-        </div>
-        <div style="display:flex;gap:1rem;margin-top:0.5rem">
+
+        <div style="display:flex;gap:1rem;margin-top:2rem">
           <button class="btn btn-secondary" onclick="nextRegStep(2)">← Back</button>
-          <button class="btn btn-primary" onclick="nextRegStep(4)">Review Application →</button>
+          <button class="btn btn-primary" onclick="nextRegStep(4)">Continue to Payment →</button>
         </div>
       </div>
 
-      <!-- Step 4: Review -->
+      <!-- Step 4: Payment -->
       <div id="reg-step-4" class="form-card hidden">
-        <h3 class="form-card-title">Review & Submit Application</h3>
-        <p class="form-card-sub">Please review the summary of your application before final submission.</p>
-        <div style="background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.4rem;margin-bottom:1.5rem">
-          <div class="modal-field"><span class="modal-field-label">Document Type</span><span class="modal-field-value" id="review-doc">—</span></div>
-          <div class="modal-field"><span class="modal-field-label">Application Mode</span><span class="modal-field-value">Fresh Application</span></div>
-          <div class="modal-field"><span class="modal-field-label">Processing Time</span><span class="modal-field-value">3–7 working days</span></div>
-          <div class="modal-field"><span class="modal-field-label">Application Fee</span><span class="modal-field-value" style="color:var(--success)">₹0 (Free)</span></div>
-          <div class="modal-field"><span class="modal-field-label">Documents Uploaded</span><span class="modal-field-value status-pill status-active">✓ 3 / 3</span></div>
+        <h3 class="form-card-title">Step 4: Fee Payment</h3>
+        <p class="form-card-sub">Complete the application fee payment via our integrated secure gateway.</p>
+        
+        <div id="payment-gateway-ui">
+          <div style="background:var(--white);border:1px solid var(--sky);border-radius:var(--r-md);padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(46,134,193,0.08)">
+            <h4 style="margin-top:0;margin-bottom:1rem;color:var(--navy);font-size:15px;display:flex;justify-content:space-between"><span>Fee Breakdown</span><span>Transaction ID: #TRX-${Math.floor(100000+Math.random()*900000)}</span></h4>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;color:var(--sub);font-size:14px"><span>Standard Application Fee</span><span>₹250.00</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;color:var(--sub);font-size:14px"><span>Processing Tax (18% GST)</span><span>₹45.00</span></div>
+            <div style="display:flex;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--border);color:var(--ink);font-weight:700;font-size:18px"><span>Total Amount Payable</span><span>₹295.00</span></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Select Payment Method</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1.5rem">
+              <div style="border:2px solid var(--sky);border-radius:var(--r-sm);padding:1rem;text-align:center;background:rgba(46,134,193,0.05);color:var(--navy);font-weight:600;cursor:pointer">💳 Credit/Debit Card</div>
+              <div style="border:1px solid var(--border);border-radius:var(--r-sm);padding:1rem;text-align:center;color:var(--muted);cursor:pointer">📱 UPI / QR Code</div>
+              <div style="border:1px solid var(--border);border-radius:var(--r-sm);padding:1rem;text-align:center;color:var(--muted);cursor:pointer">🏦 Net Banking</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Card Number</label><input class="form-input" type="text" placeholder="XXXX XXXX XXXX XXXX"></div>
+            <div class="form-group"><label class="form-label">Name on Card</label><input class="form-input" type="text" placeholder="Cardholder Name"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Expiry Date</label><input class="form-input" type="text" placeholder="MM/YY"></div>
+            <div class="form-group"><label class="form-label">CVV</label><input class="form-input" type="password" placeholder="•••"></div>
+          </div>
+
+          <div style="display:flex;gap:1rem;margin-top:1.5rem">
+            <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="nextRegStep(3)">← Back</button>
+            <button class="btn btn-accent btn-lg" style="flex:2;justify-content:center;background:#22c55e" onclick="processPayment()">🔒 Pay ₹295.00 Securely</button>
+          </div>
         </div>
+
+        <div id="payment-receipt-ui" class="hidden" style="text-align:center;padding:2rem 0">
+          <div style="width:70px;height:70px;background:var(--success);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem">✓</div>
+          <h3 style="color:var(--success);margin-bottom:0.5rem">Payment Successful</h3>
+          <p style="color:var(--muted);margin-bottom:2rem">Receipt #RCPT-2026-99231 generated. Your payment has been confirmed.</p>
+          <button class="btn btn-primary btn-full btn-lg" onclick="nextRegStep(5)">Continue to Final Review →</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Review -->
+      <div id="reg-step-5" class="form-card hidden">
+        <h3 class="form-card-title">Step 5: Review & Submit Application</h3>
+        <p class="form-card-sub">Please review your application details. Once submitted, changes cannot be made.</p>
+        
+        <div style="background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.4rem;margin-bottom:1.5rem">
+          <div class="modal-field"><span class="modal-field-label">Document Applied For</span><span class="modal-field-value" style="font-weight:700;color:var(--navy)">New Application</span></div>
+          <div class="modal-field"><span class="modal-field-label">Applicant Name</span><span class="modal-field-value">Rahul Sharma</span></div>
+          <div class="modal-field"><span class="modal-field-label">Payment Status</span><span class="modal-field-value status-pill status-active">✓ Paid (₹295.00)</span></div>
+          <div class="modal-field"><span class="modal-field-label">Documents Uploaded</span><span class="modal-field-value status-pill status-active">✓ 5 / 5 Uploaded</span></div>
+          <div class="modal-field"><span class="modal-field-label">Processing Expected</span><span class="modal-field-value">3–7 working days</span></div>
+        </div>
+        
         <div class="checkbox-row" style="margin-bottom:1.4rem">
           <input type="checkbox" id="reg-consent" checked>
-          <label for="reg-consent">I declare that all the information provided is true and correct to the best of my knowledge. I authorise NDIS to process and verify my application through relevant government agencies.</label>
+          <label for="reg-consent">I declare that all the information provided is true and correct to the best of my knowledge. I authorise the Ministry to process my application and verify my documents.</label>
         </div>
+        
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-          <button class="btn btn-secondary" onclick="nextRegStep(3)">← Back</button>
-          <button class="btn btn-accent btn-lg" onclick="submitReg()">Submit Application ✓</button>
+          <button class="btn btn-secondary" onclick="nextRegStep(4)">← Back</button>
+          <button class="btn btn-primary btn-lg" style="flex:1;justify-content:center" onclick="submitApplication()">Submit Application ✓</button>
         </div>
       </div>
     </div>
@@ -1489,6 +2394,7 @@ footer {
         <a class="active" id="dn-overview" onclick="dashSection('overview')"><span class="nav-icon">🏠</span> Overview</a>
         <a id="dn-documents" onclick="dashSection('documents')"><span class="nav-icon">🪪</span> My Documents</a>
         <a id="dn-apply" onclick="dashSection('apply')"><span class="nav-icon">📝</span> Apply / Register</a>
+        <a id="dn-tracking" onclick="dashSection('tracking')"><span class="nav-icon">📍</span> Track Applications</a>
         <a id="dn-activity" onclick="dashSection('activity')"><span class="nav-icon">📋</span> Activity Log</a>
         <div class="dash-nav-section">Account</div>
         <a id="dn-profile" onclick="dashSection('profile')"><span class="nav-icon">👤</span> My Profile</a>
@@ -1579,10 +2485,42 @@ footer {
       <div><div style="font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:0.6rem">🪪 NDIS</div><p>National Digital Identity System — a Government of India initiative under Digital India.</p></div>
       <div class="footer-col"><h4>Platform</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('signup')">Register</a></div>
       <div class="footer-col"><h4>Support</h4><a>Help Centre</a><a>Grievance Portal</a><a>RTI</a></div>
-      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Use</a><a>Accessibility</a></div>
+      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Use</a><a>Accessibility</a><a onclick="showPage('admin')" style="color:var(--sky);cursor:pointer;margin-top:1rem">Officer Portal</a></div>
     </div>
     <div class="footer-bottom"><p>© 2025 National Digital Identity System · Government of India</p></div>
   </footer>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE: ADMIN & OFFICER PORTAL
+════════════════════════════════════════════ -->
+<div id="page-admin" class="page" style="background:#f4f7f9">
+  <div class="dash-layout">
+    <!-- Admin Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-user">
+        <div class="dash-user-avatar">AD</div>
+        <div class="dash-user-name">Officer Panel</div>
+        <div class="dash-user-uid">ID: OFF-9921</div>
+        <div class="dash-user-badge">🛡️ System Admin</div>
+      </div>
+      <nav class="dash-nav">
+        <div class="dash-nav-section">Back-Office</div>
+        <a class="active" id="an-console" onclick="adminSection('console')"><span class="nav-icon">⚖️</span> Application Console</a>
+        <a id="an-issuance" onclick="adminSection('issuance')"><span class="nav-icon">🖨️</span> Document Issuance</a>
+        <a id="an-workflows" onclick="adminSection('workflows')"><span class="nav-icon">🔄</span> Special Workflows</a>
+        <a id="an-payments" onclick="adminSection('payments')"><span class="nav-icon">💳</span> Payment Management</a>
+        <div class="dash-nav-section">System</div>
+        <a id="an-alerts" onclick="adminSection('alerts')"><span class="nav-icon">🔔</span> System Alerts</a>
+        <a id="an-audit" onclick="adminSection('audit')"><span class="nav-icon">📊</span> Security & Audit Logs</a>
+        <a onclick="showPage('home')" style="color:var(--danger);margin-top:1rem"><span class="nav-icon">↩</span> Exit Portal</a>
+      </nav>
+    </aside>
+    <!-- Admin Main -->
+    <main class="dash-main" id="admin-main-content">
+      <!-- injected by JS -->
+    </main>
+  </div>
 </div>
 
 <!-- ════════════════════════════════
@@ -1629,6 +2567,7 @@ function showPage(p) {
     if(a) a.classList.toggle('active', n === p);
   });
   if (p === 'dashboard') { renderDashSection(appState.currentDashSection); }
+  if (p === 'admin') { adminSection('console'); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1644,25 +2583,118 @@ function toggleMobileMenu() {
 
 /* ── AUTH ── */
 function doLogin() {
-  appState.loggedIn = true;
-  document.getElementById('header-auth').classList.add('hidden');
-  document.getElementById('header-user').classList.remove('hidden');
-  showPage('dashboard');
-  showToast('success','✅','Login Successful','Welcome back, Rahul Sharma!');
+  const idInput = document.getElementById('login-id');
+  const pwInput = document.getElementById('login-pw');
+  const idErr = document.getElementById('login-id-error');
+  const pwErr = document.getElementById('login-pw-error');
+  const globalErr = document.getElementById('login-error');
+  const remember = document.getElementById('login-remember');
+
+  // Reset errors
+  idInput.classList.remove('error');
+  pwInput.classList.remove('error');
+  idInput.closest('.form-group').classList.remove('has-error');
+  pwInput.closest('.form-group').classList.remove('has-error');
+  globalErr.classList.add('hidden');
+
+  let valid = true;
+  const idVal = idInput.value.trim();
+  const pwVal = pwInput.value;
+
+  // Validation
+  if (!idVal) {
+    idInput.classList.add('error');
+    idInput.closest('.form-group').classList.add('has-error');
+    valid = false;
+  }
+  if (!pwVal) {
+    pwInput.classList.add('error');
+    pwInput.closest('.form-group').classList.add('has-error');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  // Dummy Authentication Check
+  if (idVal === 'user@ndis.gov.in' && pwVal === 'password123') {
+    appState.loggedIn = true;
+    document.getElementById('header-auth').classList.add('hidden');
+    document.getElementById('header-user').classList.remove('hidden');
+    
+    // Session Management
+    if (remember && remember.checked) {
+      localStorage.setItem('ndis_session_token', 'dummy_secure_token');
+    } else {
+      sessionStorage.setItem('ndis_session_token', 'dummy_secure_token');
+    }
+
+    // Clear inputs
+    idInput.value = '';
+    pwInput.value = '';
+
+    showPage('dashboard');
+    showToast('success','✅','Login Successful','Welcome back, Rahul Sharma!');
+  } else {
+    // Show global error for invalid credentials
+    globalErr.textContent = 'Invalid credentials. Please check your email/mobile and password.';
+    globalErr.classList.remove('hidden');
+  }
 }
 
-function doSignup() {
-  const name = document.getElementById('su-name').value.trim();
-  if (!name) { showToast('error','⚠️','Validation Error','Please fill in all required fields.'); return; }
-  if (!document.getElementById('su-terms').checked) { showToast('error','⚠️','Consent Required','Please accept the Terms & Privacy Policy.'); return; }
-  showToast('success','📧','Account Created!','OTP sent to your mobile for verification.');
-  setTimeout(() => { doLogin(); }, 1400);
+let currentSignupStep = 1;
+function nextSignupStep(step) {
+  // basic validation for step 1
+  if (currentSignupStep === 1 && step === 2) {
+    const name = document.getElementById('su-name').value.trim();
+    if (!name) { showToast('error','⚠️','Validation Error','Please enter your full name.'); return; }
+    // Simulate OTP
+    showToast('success','📧','OTP Sent','A verification code has been sent to your email and mobile.');
+  }
+
+  document.getElementById('signup-step-' + currentSignupStep).classList.add('hidden');
+  document.getElementById('signup-step-' + step).classList.remove('hidden');
+  
+  // update progress bar
+  ['su-prog-1','su-prog-2','su-prog-3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (i+1 <= step) el.style.background = 'var(--navy)';
+    else el.style.background = 'var(--border)';
+  });
+  
+  currentSignupStep = step;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitSignup() {
+  if (!document.getElementById('su-terms').checked) { 
+    showToast('error','⚠️','Consent Required','Please accept the Terms of Use to proceed.'); 
+    return; 
+  }
+  
+  showToast('success','🔄','Verifying','Processing identity verification...');
+  
+  setTimeout(() => {
+    // Generate random NDIS ID
+    const randomID = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('generated-ndis-id').textContent = `NDIS-2026-${randomID}`;
+    
+    // Auto-fill dummy credentials for login
+    document.getElementById('login-id').value = 'user@ndis.gov.in';
+    document.getElementById('login-pw').value = 'password123';
+    
+    nextSignupStep(3);
+  }, 1500);
 }
 
 function doLogout() {
   appState.loggedIn = false;
   document.getElementById('header-auth').classList.remove('hidden');
   document.getElementById('header-user').classList.add('hidden');
+  
+  // Clear sessions
+  localStorage.removeItem('ndis_session_token');
+  sessionStorage.removeItem('ndis_session_token');
+  
   showPage('home');
   showToast('success','👋','Logged Out','Your session has been securely ended.');
 }
@@ -1688,22 +2720,22 @@ let currentRegStep = 1;
 function nextRegStep(step) {
   document.getElementById('reg-step-' + currentRegStep).classList.add('hidden');
   document.getElementById('reg-step-' + step).classList.remove('hidden');
-  ['rstep-1','rstep-2','rstep-3','rstep-4'].forEach((id, i) => {
+  
+  ['rstep-1','rstep-2','rstep-3','rstep-4','rstep-5'].forEach((id, i) => {
     const el = document.getElementById(id);
+    if (!el) return;
     el.classList.remove('active','done');
     if (i+1 < step) el.classList.add('done');
     else if (i+1 === step) el.classList.add('active');
   });
+  
   currentRegStep = step;
-  if (step === 4) document.getElementById('review-doc').textContent = appState.selectedDoc || 'Aadhaar Card';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function selectDocType(el, name) {
-  document.querySelectorAll('.doc-type-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  appState.selectedDoc = name;
-  document.getElementById('reg-next-1').disabled = false;
+  // Unused in the new select dropdown flow, kept for compatibility if needed elsewhere
 }
 
 function fakeUpload(id, msg) {
@@ -1711,11 +2743,35 @@ function fakeUpload(id, msg) {
   showToast('success','📎','File Ready','Encrypted and staged for submission.');
 }
 
-function submitReg() {
-  showToast('success','🎉','Application Submitted!','Your application ID is APP-2025-' + Math.floor(Math.random()*90000+10000) + '. Processing in 3–7 working days.');
+function processPayment() {
+  showToast('success','🔄','Processing','Connecting to secure payment gateway...');
   setTimeout(() => {
-    if (appState.loggedIn) showPage('dashboard');
-    else showPage('login');
+    document.getElementById('payment-gateway-ui').classList.add('hidden');
+    document.getElementById('payment-receipt-ui').classList.remove('hidden');
+  }, 1500);
+}
+
+function submitApplication() {
+  if (!document.getElementById('reg-consent').checked) {
+    showToast('error','⚠️','Consent Required','Please agree to the declaration to submit.');
+    return;
+  }
+  
+  const appID = 'APP-2026-' + Math.floor(Math.random()*90000+10000);
+  showToast('success','🎉','Application Submitted!',`Your application ID is ${appID}. You can track it in your Dashboard.`);
+  
+  setTimeout(() => {
+    appState.loggedIn = true; // Auto-login if they were guest
+    document.getElementById('header-auth').classList.add('hidden');
+    document.getElementById('header-user').classList.remove('hidden');
+    showPage('dashboard');
+    dashSection('tracking'); // Take them directly to the tracking view
+    
+    // Reset form states for future
+    currentRegStep = 1;
+    document.getElementById('payment-gateway-ui').classList.remove('hidden');
+    document.getElementById('payment-receipt-ui').classList.add('hidden');
+    nextRegStep(1); 
   }, 2000);
 }
 
@@ -1733,64 +2789,146 @@ function renderDashSection(s) {
   if (s === 'overview') main.innerHTML = renderOverview();
   else if (s === 'documents') main.innerHTML = renderDocuments();
   else if (s === 'apply') main.innerHTML = renderApply();
+  else if (s === 'tracking') main.innerHTML = renderTracking();
   else if (s === 'activity') main.innerHTML = renderActivity();
   else if (s === 'profile') main.innerHTML = renderProfile();
 }
 
+function renderTracking() {
+  return `
+    <div class="dash-topbar"><div><h2>Track Applications</h2><div class="dash-topbar-sub">Real-time status tracking for your document applications</div></div></div>
+    
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem;margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)">
+        <div>
+          <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:4px">New PAN Card Application</h3>
+          <div style="font-size:13px;color:var(--muted)">Application ID: APP-2025-45123 · Submitted: 21 Apr 2025</div>
+        </div>
+        <div class="status-pill status-pending" style="font-size:12px;padding:4px 12px">⏳ In Review</div>
+      </div>
+      
+      <div style="display:flex;gap:2rem">
+        <div style="flex:1">
+          <h4 style="font-size:14px;color:var(--ink);margin-bottom:1.5rem">Status Timeline</h4>
+          <div class="about-timeline" style="margin-top:0">
+            <div class="tl-item"><div class="tl-dot" style="background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-size:10px">✓</div><div class="tl-text"><h4 style="margin-bottom:2px">Application Submitted</h4><p style="font-size:12px">21 Apr 2025, 10:30 AM</p></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-size:10px">✓</div><div class="tl-text"><h4 style="margin-bottom:2px">Payment Verified</h4><p style="font-size:12px">21 Apr 2025, 10:35 AM</p></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--warn)"></div><div class="tl-text"><h4 style="color:var(--warn);margin-bottom:2px">Under Document Review</h4><p style="font-size:12px">Expected completion: 24 Apr 2025</p></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--mist);border:2px solid var(--border)"></div><div class="tl-text"><h4 style="color:var(--muted);margin-bottom:2px">Final Approval</h4><p style="font-size:12px">Pending</p></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--mist);border:2px solid var(--border)"></div><div class="tl-text"><h4 style="color:var(--muted);margin-bottom:2px">Document Dispatched / Ready</h4><p style="font-size:12px">Pending</p></div></div>
+          </div>
+        </div>
+        
+        <div style="flex:1;background:var(--mist);border-radius:var(--r-md);padding:1.2rem;border:1px solid var(--border)">
+          <h4 style="font-size:14px;color:var(--ink);margin-bottom:1rem">Activity Log</h4>
+          <div style="font-size:12px;color:var(--text);line-height:1.6">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;border-bottom:1px dashed var(--border);padding-bottom:0.5rem">
+              <span><b>System:</b> Document assigned to Review Officer #4021</span>
+              <span style="color:var(--muted)">22 Apr, 09:15 AM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;border-bottom:1px dashed var(--border);padding-bottom:0.5rem">
+              <span><b>System:</b> Biometric data verified with UIDAI database</span>
+              <span style="color:var(--success)">21 Apr, 11:20 AM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;border-bottom:1px dashed var(--border);padding-bottom:0.5rem">
+              <span><b>User:</b> Payment of ₹295.00 successful via Gateway</span>
+              <span style="color:var(--muted)">21 Apr, 10:35 AM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span><b>User:</b> Application submitted with 5 documents</span>
+              <span style="color:var(--muted)">21 Apr, 10:30 AM</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" style="width:100%;margin-top:1.5rem;justify-content:center" onclick="showToast('success','📩','Request Sent','Expedite request submitted.')">Request Expedite Processing</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderOverview() {
   return `
-    <div class="dash-topbar">
-      <div><h2>Good Morning, Suprit 👋</h2><div class="dash-topbar-sub">Wednesday, 22 April 2025 · Last login: Today, 09:14 AM from Kolkata</div></div>
-      <button class="btn btn-primary btn-sm" onclick="showPage('register')">+ Register Document</button>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card kpi-blue"><div class="kpi-label">Total Documents</div><div class="kpi-value">6</div><div class="kpi-sub">4 active · 2 pending</div></div>
-      <div class="kpi-card kpi-amber"><div class="kpi-label">Pending</div><div class="kpi-value">2</div><div class="kpi-sub">Awaiting verification</div></div>
-      <div class="kpi-card kpi-green"><div class="kpi-label">Approved</div><div class="kpi-value">4</div><div class="kpi-sub">Fully verified</div></div>
-      <div class="kpi-card kpi-red"><div class="kpi-label">Rejected</div><div class="kpi-value">0</div><div class="kpi-sub">No rejections</div></div>
-    </div>
-    <div class="section-title">Quick Actions</div>
-    <div class="quick-actions">
-      <div class="qa-card" onclick="showPage('register')"><div class="qa-icon">📤</div><div class="qa-label">Upload Document</div></div>
-      <div class="qa-card" onclick="showToast('success','📥','Ready','Certificate download initiated.')"><div class="qa-icon">📥</div><div class="qa-label">Download Certificate</div></div>
-      <div class="qa-card" onclick="dashSection('profile')"><div class="qa-icon">✏️</div><div class="qa-label">Update Profile</div></div>
-      <div class="qa-card" onclick="showPage('register')"><div class="qa-icon">📝</div><div class="qa-label">Apply for New ID</div></div>
-      <div class="qa-card" onclick="showToast('success','📱','QR Generated','Scan to verify your identity.')"><div class="qa-icon">📱</div><div class="qa-label">Generate QR</div></div>
-      <div class="qa-card" onclick="showPage('contact')"><div class="qa-icon">💬</div><div class="qa-label">Get Support</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+    <!-- Expiry Reminder -->
+    <div style="background:rgba(180,83,9,0.08);border:1px solid rgba(180,83,9,0.3);border-radius:var(--r-md);padding:1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;color:var(--warn)">
+      <div style="font-size:1.5rem">⚠️</div>
       <div>
-        <div class="section-title">My Documents <span onclick="dashSection('documents')">View All →</span></div>
-        <div>${DOCS.slice(0,4).map((d,i) => `<div class="doc-card" style="margin-bottom:0.8rem" onclick="openDocModal(${i})"><div class="doc-card-top"><div class="doc-icon">${d.icon}</div><span class="status-pill ${d.status==='active'?'status-active':d.status==='pending'?'status-pending':'status-rejected'}">${d.status==='active'?'Active':d.status==='pending'?'Pending':'Not Linked'}</span></div><h4>${d.name}</h4><div class="doc-card-id">${d.num}</div><div class="doc-card-actions">${d.status==='active'?`<button class="btn btn-sm" style="background:rgba(15,52,96,0.08);color:var(--navy)" onclick="event.stopPropagation();openDocModal(${i})">View</button><button class="btn btn-sm" style="background:rgba(27,122,74,0.08);color:var(--success)" onclick="event.stopPropagation();showToast('success','📥','Downloading','${d.name} PDF ready.')">Download</button>`:`<button class="btn btn-sm" style="background:rgba(180,83,9,0.08);color:var(--warn)" onclick="event.stopPropagation();showToast('success','⏳','Pending Review','Your document is under verification.')">Check Status</button>`}</div></div>`).join('')}</div>
+        <div style="font-weight:700">Document Expiry Reminder</div>
+        <div style="font-size:13px;color:var(--ink);margin-top:2px">Your Driving Licence expires in 45 days. <a style="color:var(--sky);font-weight:600;cursor:pointer;text-decoration:underline" onclick="showToast('info','🔄','Renewal System','Routing to document renewal module...')">Renew Now</a></div>
       </div>
+    </div>
+
+    <!-- Identity & Profile Summary -->
+    <div style="background:linear-gradient(135deg, var(--navy) 0%, #1a4a75 100%);color:var(--white);border-radius:var(--r-lg);padding:2rem;margin-bottom:2rem;box-shadow:0 10px 30px rgba(15,52,96,0.15);display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:250px">
+        <h2 style="font-family:'IBM Plex Serif',serif;font-size:1.8rem;margin-bottom:0.5rem">Suprit Biswas</h2>
+        <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:1.5rem">UID: NDIS-2025-784321</div>
+        <div class="status-pill" style="background:rgba(255,255,255,0.15);color:var(--white);border:1px solid rgba(255,255,255,0.3);font-size:13px;padding:6px 14px"><span style="color:#4ade80;margin-right:6px">●</span> Identity Status: Verified</div>
+      </div>
+      <div style="flex:2;background:rgba(0,0,0,0.15);border-radius:var(--r-md);padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:13px">
+        <div><div style="color:rgba(255,255,255,0.6);margin-bottom:4px">Mobile Number</div><div style="font-weight:600">+91 62943 01812</div></div>
+        <div><div style="color:rgba(255,255,255,0.6);margin-bottom:4px">Email Address</div><div style="font-weight:600">Suprit410@email.com</div></div>
+        <div><div style="color:rgba(255,255,255,0.6);margin-bottom:4px">Date of Birth</div><div style="font-weight:600">04/12/2006</div></div>
+        <div><div style="color:rgba(255,255,255,0.6);margin-bottom:4px">Location</div><div style="font-weight:600">West Bengal, India</div></div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="section-title">Quick Actions</div>
+    <div class="quick-actions" style="margin-bottom:2rem;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr))">
+      <div class="qa-card" onclick="dashSection('apply')"><div class="qa-icon">📝</div><div class="qa-label">Apply for New Document</div></div>
+      <div class="qa-card" onclick="showToast('info','🔄','Renewal System','Routing to document renewal module...')"><div class="qa-icon">🔄</div><div class="qa-label">Renew Document</div></div>
+      <div class="qa-card" onclick="dashSection('profile')"><div class="qa-icon">👤</div><div class="qa-label">Update Profile</div></div>
+      <div class="qa-card" onclick="dashSection('documents')"><div class="qa-icon">📥</div><div class="qa-label">Download Certificates</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:2rem">
+      <!-- Left Column: Show Modules -->
       <div>
-        <div class="section-title">Notifications</div>
-        <div class="notif-panel">
-          <div class="notif-item"><div class="notif-icon" style="background:rgba(27,122,74,0.1)">✅</div><div><b class="notif-text">Aadhaar Card Verified</b><div class="notif-text">Your Aadhaar has been verified and linked to your NDIS account.</div><div class="notif-time">Today, 09:14 AM</div></div></div>
-          <div class="notif-item"><div class="notif-icon" style="background:rgba(180,83,9,0.1)">⏳</div><div><b class="notif-text">Birth Certificate Pending</b><div class="notif-text">Your application is under review. Expected completion in 2–3 days.</div><div class="notif-time">Yesterday, 3:22 PM</div></div></div>
-          <div class="notif-item"><div class="notif-icon" style="background:rgba(21,101,192,0.1)">📧</div><div><b class="notif-text">OTP Verification Complete</b><div class="notif-text">Your mobile number has been successfully verified.</div><div class="notif-time">20 Apr, 11:05 AM</div></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <div class="section-title" style="margin:0">Active Applications</div>
+          <a style="font-size:13px;color:var(--sky);cursor:pointer;font-weight:600" onclick="dashSection('tracking')">Track All →</a>
         </div>
-        <div style="margin-top:1.5rem">
-          <div class="section-title">Account Security</div>
-          <div class="security-widget">
-            <div style="display:flex;align-items:center;gap:1rem">
-              <div class="security-score-ring"><div class="security-score-inner">86</div></div>
-              <div>
-                <div style="font-weight:700;color:var(--ink)">Security Score: Good</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px">Complete biometric setup to reach 100</div>
-                <div class="progress-bar" style="margin-top:8px;width:160px"><div class="progress-fill" style="width:86%"></div></div>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;font-size:12px">
-              <div class="status-pill status-active">✓ 2FA On</div>
-              <div class="status-pill status-active">✓ Email Verified</div>
-              <div class="status-pill status-active">✓ Mobile Verified</div>
-              <div class="status-pill status-pending">⚠ Biometric Pending</div>
-            </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem;margin-bottom:2rem">
+          <div style="display:flex;justify-content:space-between;margin-bottom:1rem"><b style="color:var(--navy)">New PAN Card</b><span class="status-pill status-pending" style="font-size:11px">In Review</span></div>
+          <div class="progress-bar" style="height:6px;margin-bottom:1rem"><div class="progress-fill" style="width:60%;background:var(--warn)"></div></div>
+          <div style="font-size:12px;color:var(--muted)">Step 3 of 5 completed. Expected finish: 24 Apr 2025.</div>
+        </div>
+
+        <div style="display:flex;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap">
+          <div style="flex:1;min-width:180px;background:rgba(46,134,193,0.05);border:1px solid var(--sky);border-radius:var(--r-md);padding:1.5rem;cursor:pointer" onclick="dashSection('documents')">
+            <div style="font-size:2rem;margin-bottom:0.5rem">🪪</div>
+            <div style="font-weight:700;color:var(--navy);font-size:1.2rem">6 Linked</div>
+            <div style="font-size:13px;color:var(--sub)">Verified Documents</div>
+          </div>
+          <div style="flex:1;min-width:180px;background:var(--mist);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+            <h4 style="font-size:14px;color:var(--ink);margin-bottom:1rem">Application History</h4>
+            <div style="font-size:13px;border-bottom:1px dashed var(--border);padding-bottom:0.5rem;margin-bottom:0.5rem"><b>Voter ID</b> <span style="float:right;color:var(--success)">Approved</span><div style="color:var(--muted);font-size:11px;margin-top:2px">15 Jan 2025</div></div>
+            <div style="font-size:13px"><b>Driving Licence</b> <span style="float:right;color:var(--success)">Approved</span><div style="color:var(--muted);font-size:11px;margin-top:2px">22 Jun 2020</div></div>
           </div>
         </div>
       </div>
-    </div>`;
+
+      <!-- Right Column: Advanced Notification Center -->
+      <div>
+        <div class="section-title">Notification Center</div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden">
+          <div style="background:var(--mist);padding:0.8rem 1.2rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;font-size:12px;font-weight:600">
+            <span style="color:var(--sky);border-bottom:2px solid var(--sky);padding-bottom:0.6rem;margin-bottom:-0.8rem;cursor:pointer">All Alerts</span>
+          </div>
+          <div class="notif-panel" style="border:none;border-radius:0;margin:0;max-height:400px;overflow-y:auto;padding-top:1rem">
+            <!-- Application Update -->
+            <div class="notif-item"><div class="notif-icon" style="background:rgba(180,83,9,0.1)">⏳</div><div><b class="notif-text">Application Update</b><div class="notif-text" style="color:var(--ink)">PAN Card application moved to Review phase.</div><div class="notif-time">Today, 09:14 AM</div></div></div>
+            <!-- Alert -->
+            <div class="notif-item"><div class="notif-icon" style="background:rgba(220,38,38,0.1)">⚠️</div><div><b class="notif-text">Security Alert</b><div class="notif-text" style="color:var(--ink)">New login detected from Kolkata, India.</div><div class="notif-time">Today, 09:10 AM</div></div></div>
+            <!-- System Message -->
+            <div class="notif-item"><div class="notif-icon" style="background:rgba(21,101,192,0.1)">🔔</div><div><b class="notif-text">System Message</b><div class="notif-text" style="color:var(--ink)">NDIS Portal scheduled maintenance on 25 Apr.</div><div class="notif-time">Yesterday, 5:00 PM</div></div></div>
+            <!-- Payment Confirmation -->
+            <div class="notif-item"><div class="notif-icon" style="background:rgba(27,122,74,0.1)">💳</div><div><b class="notif-text">Payment Confirmation</b><div class="notif-text" style="color:var(--ink)">Receipt #RCPT-2026-99231 generated (₹295.00).</div><div class="notif-time">21 Apr, 10:35 AM</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function renderDocuments() {
@@ -1943,6 +3081,15 @@ function animateCounter(id, target, suffix='') {
 }
 
 window.addEventListener('load', () => {
+  // Check for existing session
+  const hasSession = localStorage.getItem('ndis_session_token') || sessionStorage.getItem('ndis_session_token');
+  if (hasSession) {
+    appState.loggedIn = true;
+    document.getElementById('header-auth').classList.add('hidden');
+    document.getElementById('header-user').classList.remove('hidden');
+    showPage('dashboard');
+  }
+
   setTimeout(() => {
     animateCounter('stat1', 140000000);
     animateCounter('stat2', 420000000);
@@ -1950,6 +3097,267 @@ window.addEventListener('load', () => {
     animateCounter('stat4', 36);
   }, 400);
 });
+/* ── FAQ ACCORDION ── */
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+  // toggle clicked
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ── GUIDE TAB SWITCH ── */
+function switchGuideTab(tab) {
+  document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.guide-content').forEach(c => c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('guide-' + tab).classList.add('active');
+}
+
+/* ── ADMIN / OFFICER PORTAL ── */
+function adminSection(s) {
+  document.querySelectorAll('.admin-nav a[id^="an-"]').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('an-' + s);
+  if (el) el.classList.add('active');
+  const main = document.getElementById('admin-main-content');
+  if (s === 'console') main.innerHTML = renderAdminConsole();
+  else if (s === 'issuance') main.innerHTML = renderAdminIssuance();
+  else if (s === 'workflows') main.innerHTML = renderAdminWorkflows();
+  else if (s === 'audit') main.innerHTML = renderAdminAudit();
+  else if (s === 'payments') main.innerHTML = renderAdminPayments();
+  else if (s === 'alerts') main.innerHTML = renderAdminAlerts();
+}
+
+function renderAdminConsole() {
+  return `
+    <div class="dash-topbar"><div><h2>Application Processing Console</h2><div class="dash-topbar-sub">Review and process citizen document applications</div></div></div>
+    
+    <div style="display:flex;gap:1rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:1rem">
+      <button class="btn btn-primary" style="border-radius:999px">Pending (3)</button>
+      <button class="btn btn-secondary" style="border-radius:999px">In-Review (1)</button>
+      <button class="btn btn-secondary" style="border-radius:999px;color:var(--danger)">Escalated (0)</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <!-- Work Queue -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1rem;height:calc(100vh - 200px);overflow-y:auto">
+        <h3 style="font-size:14px;margin-bottom:1rem;color:var(--navy)">Pending Applications Queue</h3>
+        
+        <div style="border:1px solid var(--border);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem;cursor:pointer;background:var(--mist);border-left:4px solid var(--warn)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><b style="color:var(--navy)">New PAN Card</b> <span style="font-size:12px;color:var(--muted)">2 mins ago</span></div>
+          <div style="font-size:13px;color:var(--ink);margin-bottom:0.5rem">Applicant: Suprit Biswas (NDIS-2025-784321)</div>
+          <div style="font-size:12px;color:var(--muted)">APP-2026-45123 · 5 Documents Uploaded</div>
+        </div>
+        
+        <div style="border:1px solid var(--border);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><b style="color:var(--navy)">Driving Licence Renewal</b> <span style="font-size:12px;color:var(--muted)">1 hr ago</span></div>
+          <div style="font-size:13px;color:var(--ink);margin-bottom:0.5rem">Applicant: Rahul Sharma (NDIS-2020-112233)</div>
+          <div style="font-size:12px;color:var(--muted)">APP-2026-99214 · 2 Documents Uploaded</div>
+        </div>
+      </div>
+
+      <!-- Detail View -->
+      <div style="background:var(--white);border:1px solid var(--sky);border-radius:var(--r-md);padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,0.05)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <h3 style="font-size:1.2rem;color:var(--navy)">Application Details</h3>
+          <span class="status-pill status-pending">Awaiting Review</span>
+        </div>
+        
+        <div style="background:var(--mist);padding:1rem;border-radius:var(--r-sm);margin-bottom:1.5rem;font-size:13px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
+            <div><b style="color:var(--muted)">ID:</b> APP-2026-45123</div>
+            <div><b style="color:var(--muted)">Type:</b> New PAN Card</div>
+            <div><b style="color:var(--muted)">Applicant:</b> Suprit Biswas</div>
+            <div><b style="color:var(--muted)">UID:</b> NDIS-2025-784321</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:13px;color:var(--ink);margin-bottom:0.5rem">Uploaded Documents (5/5)</h4>
+        <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap">
+          <span class="status-pill status-active" style="cursor:pointer" onclick="showToast('info','📄','Viewing Document','Opening Identity Proof...')">📄 Identity Proof</span>
+          <span class="status-pill status-active" style="cursor:pointer">🏠 Address Proof</span>
+          <span class="status-pill status-active" style="cursor:pointer">📜 Birth Cert</span>
+          <span class="status-pill status-active" style="cursor:pointer">🎓 Education</span>
+          <span class="status-pill status-active" style="cursor:pointer">🤳 Photo</span>
+        </div>
+
+        <h4 style="font-size:13px;color:var(--ink);margin-bottom:0.5rem">Verification Notes</h4>
+        <textarea class="form-textarea" style="min-height:80px;margin-bottom:1.5rem" placeholder="Add internal processing notes here..."></textarea>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <button class="btn btn-primary" style="justify-content:center" onclick="showToast('success','✅','Approved','Application marked as Approved and moved to Issuance queue.')">Approve Application</button>
+          <button class="btn btn-secondary" style="justify-content:center;color:var(--danger);border-color:var(--danger)" onclick="showToast('error','❌','Rejected','Application rejected. Notification sent to citizen.')">Reject Application</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <button class="btn btn-secondary btn-sm" style="justify-content:center" onclick="showToast('info','📧','Requested','Request for additional documents sent.')">Request Addt'l Docs</button>
+          <button class="btn btn-secondary btn-sm" style="justify-content:center" onclick="showToast('info','📅','Scheduled','Biometric appointment invitation sent.')">Schedule Biometrics</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAdminIssuance() {
+  return `
+    <div class="dash-topbar"><div><h2>Document Issuance & Lifecycle</h2><div class="dash-topbar-sub">Manage printing, personalization, and physical dispatch of approved documents</div></div></div>
+    
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+      <h3 style="font-size:14px;color:var(--navy);margin-bottom:1rem">Issuance Workflow Tracker</h3>
+      
+      <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left">
+        <thead>
+          <tr style="background:var(--mist);color:var(--muted)">
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">App ID</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Document Type</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Applicant</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Current Status</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">APP-99821</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><b>Voter ID</b></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">Raj Kumar</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-pending">Submitted for Print</span></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">
+              <select class="form-select" style="padding:0.4rem;font-size:12px" onchange="showToast('success','🔄','Status Updated','Status changed to ' + this.value)">
+                <option>Submitted</option><option>Printed</option><option>Dispatched</option><option>Delivered</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">APP-88342</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><b>Driving Licence</b></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">Anita Desai</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-active" style="background:rgba(46,134,193,0.1);color:var(--sky)">Printed & Personalized</span></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">
+              <button class="btn btn-secondary btn-sm" onclick="showToast('success','📦','Dispatched','Tracking ID generated.')">Mark Dispatched</button>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">APP-77123</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><b>Aadhaar Card</b></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)">Suprit Biswas</td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-active">Delivered & Activated</span></td>
+            <td style="padding:1rem;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">Completed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAdminWorkflows() {
+  return `
+    <div class="dash-topbar"><div><h2>Additional Workflows</h2><div class="dash-topbar-sub">Handle edge cases, revocations, and document replacements</div></div></div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.2);border-radius:var(--r-md);padding:1.5rem">
+        <h3 style="font-size:1.2rem;color:var(--danger);margin-bottom:0.5rem">Document Revocation</h3>
+        <p style="font-size:13px;color:var(--ink);margin-bottom:1rem">Revoke an active document due to fraud, death, or court order. This action immediately updates the central registry.</p>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Enter NDIS ID or Document Number"></div>
+        <button class="btn btn-secondary" style="color:var(--danger);border-color:var(--danger)" onclick="showToast('error','⚠️','Revocation Initialized','Security protocol started.')">Initiate Revocation</button>
+      </div>
+      
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+        <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem">Document Replacement</h3>
+        <p style="font-size:13px;color:var(--ink);margin-bottom:1rem">Process a request for a lost, stolen, or damaged document. Generates a replacement fee link for the citizen.</p>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Enter NDIS ID or Document Number"></div>
+        <button class="btn btn-primary" onclick="showToast('success','🔄','Replacement Processed','Fee link sent to citizen.')">Process Replacement</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderAdminAudit() {
+  return `
+    <div class="dash-topbar"><div><h2>Security & Audit Logs</h2><div class="dash-topbar-sub">Monitor system access, events, and role-based actions</div></div></div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+      <div style="display:flex;justify-content:space-between;margin-bottom:1rem">
+        <h3 style="font-size:14px;color:var(--navy)">System Event Log</h3>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('success','📥','Exported','Audit log downloaded as CSV.')">Export CSV</button>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left">
+        <thead>
+          <tr style="background:var(--mist);color:var(--muted)">
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Timestamp</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">User / IP</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Action</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:1rem;border-bottom:1px solid var(--border)">Today, 10:45 AM</td><td style="padding:1rem;border-bottom:1px solid var(--border)"><b>Suprit Biswas</b><br><span style="color:var(--muted);font-size:11px">IP: 192.168.1.4</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-active" style="background:rgba(46,134,193,0.1);color:var(--sky)">Successful Login</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)">Citizen</td></tr>
+          <tr><td style="padding:1rem;border-bottom:1px solid var(--border)">Today, 09:12 AM</td><td style="padding:1rem;border-bottom:1px solid var(--border)"><b>OFF-9921</b><br><span style="color:var(--muted);font-size:11px">IP: 10.0.0.52</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-active">Approved App #45123</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)">Officer</td></tr>
+          <tr><td style="padding:1rem;border-bottom:1px solid var(--border)">Yesterday, 11:30 PM</td><td style="padding:1rem;border-bottom:1px solid var(--border)"><b>Unknown</b><br><span style="color:var(--muted);font-size:11px">IP: 45.33.22.1</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-rejected">Failed Auth (OTP Mismatch)</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)">Guest</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAdminPayments() {
+  return `
+    <div class="dash-topbar"><div><h2>Payment & Refund Management</h2><div class="dash-topbar-sub">Track application fees and process refunds for rejected applications</div></div></div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+      <h3 style="font-size:14px;color:var(--navy);margin-bottom:1rem">Transaction Ledger</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left">
+        <thead>
+          <tr style="background:var(--mist);color:var(--muted)">
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Txn ID</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">App ID</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Amount</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Status</th>
+            <th style="padding:1rem;border-bottom:1px solid var(--border)">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:1rem;border-bottom:1px solid var(--border)">TXN-883921</td><td style="padding:1rem;border-bottom:1px solid var(--border)">APP-2026-45123</td><td style="padding:1rem;border-bottom:1px solid var(--border)">₹295.00</td><td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-active">Success</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)"><button class="btn btn-secondary btn-sm" onclick="showToast('info','📄','Receipt','Viewing receipt #883921')">View Receipt</button></td></tr>
+          <tr><td style="padding:1rem;border-bottom:1px solid var(--border)">TXN-883910</td><td style="padding:1rem;border-bottom:1px solid var(--border)">APP-2026-99214</td><td style="padding:1rem;border-bottom:1px solid var(--border)">₹295.00</td><td style="padding:1rem;border-bottom:1px solid var(--border)"><span class="status-pill status-pending">Rejected App</span></td><td style="padding:1rem;border-bottom:1px solid var(--border)"><button class="btn btn-secondary btn-sm" style="color:var(--danger);border-color:var(--danger)" onclick="showToast('success','💸','Refund Issued','₹295.00 refunded to source account.')">Issue Refund</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAdminAlerts() {
+  return `
+    <div class="dash-topbar"><div><h2>Notification Dispatch System</h2><div class="dash-topbar-sub">Broadcast system alerts or send direct SMS/Email notifications</div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+        <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem">Direct User Notification</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Send an SMS or Email alert to a specific citizen regarding their application.</p>
+        <div class="form-group"><label class="form-label">User ID</label><input type="text" class="form-input" placeholder="NDIS-YYYY-XXXXXX"></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Type notification message..."></textarea></div>
+        <button class="btn btn-primary" onclick="showToast('success','📨','Sent','Notification dispatched to user.')">Send Notification</button>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:1.5rem">
+        <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem">System Broadcast</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Publish a maintenance banner or global alert to all active sessions.</p>
+        <div class="form-group"><label class="form-label">Alert Type</label>
+          <select class="form-select"><option>Maintenance Downtime</option><option>Security Advisory</option><option>General Update</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Broadcast Details</label><textarea class="form-textarea" placeholder="E.g. NDIS will be offline for 2 hours on Sunday..."></textarea></div>
+        <button class="btn btn-secondary" style="color:var(--warn);border-color:var(--warn)" onclick="showToast('success','📢','Broadcast Live','Global alert banner is now active.')">Publish Broadcast</button>
+      </div>
+    </div>
+  `;
+}
+
+function adminLogin() {
+  const id = document.getElementById('admin-login-id').value;
+  const pw = document.getElementById('admin-login-pw').value;
+  if (!id || !pw) {
+    showToast('error', '⚠️', 'Error', 'Please enter Officer ID and Password.');
+    return;
+  }
+  showToast('success', '✅', 'Authenticated', 'Welcome back, Officer.');
+  appState.loggedIn = true;
+  document.getElementById('header-auth').classList.add('hidden');
+  document.getElementById('header-user').classList.remove('hidden');
+  showPage('admin');
+}
 </script>
 </body>
 </html>
